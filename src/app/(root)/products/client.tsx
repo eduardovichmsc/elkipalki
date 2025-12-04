@@ -88,7 +88,7 @@ export default function CatalogClient({ products }: CatalogClientProps) {
 			{/* --- CONTROLS & GRID --- */}
 			<section className="px-6 md:px-24 pb-24 relative z-10">
 				{/* Sticky Filter Bar */}
-				<div className="sticky top-6 z-40 mb-16">
+				<div className="top-6 z-40 mb-16">
 					<div className="bg-forest/80 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex flex-wrap justify-between items-center shadow-2xl">
 						{/* Filters */}
 						<div className="flex flex-wrap gap-1">
@@ -138,7 +138,7 @@ export default function CatalogClient({ products }: CatalogClientProps) {
 										initial={{ opacity: 0, y: 10, scale: 0.95 }}
 										animate={{ opacity: 1, y: 0, scale: 1 }}
 										exit={{ opacity: 0, y: 10, scale: 0.95 }}
-										className="absolute top-full right-0 mt-2 w-48 bg-[#1A4231] border border-white/10 rounded-xl overflow-hidden shadow-xl py-2">
+										className="block absolute top-full right-0 mt-2 w-48 bg-[#1A4231] border border-white/10 rounded-xl overflow-hidden shadow-xl py-2">
 										<button
 											onClick={() => {
 												setSortOrder("price-asc");

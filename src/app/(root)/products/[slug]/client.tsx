@@ -8,6 +8,7 @@ import { Product } from "@/types/product";
 import { PATHS } from "@/config/paths";
 import Accordion from "@/components/accordion";
 import ProductCard from "@/components/catalog/card";
+import FavoriteButton from "@/components/ui/favorite_button";
 
 interface ProductPageClientProps {
 	product: Product;
@@ -161,14 +162,18 @@ export default function ProductPageClient({
 							)}
 						</div>
 
-						{/* Actions */}
 						<div className="flex gap-4 mb-12">
 							<button className="flex-1 bg-cream text-forest py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gold transition-colors duration-300">
 								Добавить в корзину
 							</button>
-							<button className="w-14 h-14 border border-white/20 rounded-full flex items-center justify-center text-white/50 hover:text-gold hover:border-gold transition-colors">
-								<Star size={20} />
-							</button>
+
+							<div className="w-14 h-14 border border-white/20 rounded-full flex items-center justify-center hover:border-gold transition-colors">
+								<FavoriteButton
+									product={product}
+									iconSize={24}
+									className="w-full h-full rounded-full"
+								/>
+							</div>
 						</div>
 
 						{/* Details Accordion */}

@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
-import { ShoppingBag, Menu, X, Settings } from "lucide-react"; // 1. Добавили Settings
+import { ShoppingBag, Menu, X, Settings, Heart } from "lucide-react"; // 1. Добавили Settings
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { PATHS } from "@/config/paths";
 import { useLenis } from "@/components/layout/scroll";
+import { useMounted } from "@/hooks/useMounted";
+import { useFavoritesStore } from "@/store/favorites";
 
 const navLinks = [
 	{ name: "Коллекция", href: PATHS.CATALOG },
@@ -15,6 +17,10 @@ const navLinks = [
 export default function Navbar() {
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const { items } = useFavoritesStore();
+	const isMounted = useMounted();
+	const favoritesCount = isMounted ? items.length : 0;
 
 	const lenis = useLenis();
 
@@ -86,6 +92,18 @@ export default function Navbar() {
 							className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-cream">
 							<Menu size={20} />
 						</button>
+
+						{/* Кнопка Избранного */}
+						<Link
+							href="/favorites"
+							className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-forest transition-all duration-300 cursor-pointer">
+							<Heart size={18} />
+							{favoritesCount > 0 && (
+								<span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-cream text-[10px] font-bold text-forest">
+									{favoritesCount}
+								</span>
+							)}
+						</Link>
 					</div>
 				</div>
 			</motion.header>
