@@ -1,0 +1,269 @@
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Plus, Minus, Trash2, ArrowRight, Loader2 } from "lucide-react";
+import Image from "next/image";
+import { useCartStore } from "@/store/cart";
+import { useMounted } from "@/hooks/useMounted"; // Убедитесь, что путь правильный (use-mounted или useMounted)
+
+export default function CartDrawer() {
+	const {
+		items,
+		isOpen,
+		closeCart,
+		removeItem,
+		updateQuantity,
+		totalPrice,
+		clearCart,
+	} = useCartStore();
+	const isMounted = useMounted();
+
+	const [isCheckout, setIsCheckout] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [success, setSuccess] = useState(false);
+	const [formData, setFormData] = useState({
+		name: "",
+		phone: "",
+		comment: "",
+	});
+
+	if (!isMounted) return null;
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		setLoading(true);
+
+		try {
+			const res = await fetch("/api/checkout", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					contact: formData,
+					items: items,
+					total: totalPrice(),
+				}),
+			});
+
+			if (res.ok) {
+				setSuccess(true);
+				setTimeout(() => {
+					clearCart();
+					setSuccess(false);
+					setIsCheckout(false);
+					closeCart();
+					setFormData({ name: "", phone: "", comment: "" });
+				}, 3000);
+			}
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	return (
+		<AnimatePresence>
+			{isOpen && (
+				<>
+					{/* Backdrop */}
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						onClick={closeCart}
+						className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
+					/>
+
+					{/* Drawer */}
+					<motion.div
+						initial={{ x: "100%" }}
+						animate={{ x: 0 }}
+						exit={{ x: "100%" }}
+						transition={{ type: "spring", damping: 25, stiffness: 200 }}
+						className="fixed top-0 right-0 h-full w-full md:w-[500px] bg-[#0F2E22] border-l border-white/10 z-[70] flex flex-col shadow-2xl">
+						{/* Header */}
+						<div className="flex items-center justify-between p-6 border-b border-white/10">
+							<h2 className="text-2xl font-serif text-cream">
+								{isCheckout ? "Оформление" : success ? "Спасибо!" : "Корзина"}
+							</h2>
+							<button
+								onClick={closeCart}
+								className="text-white/50 hover:text-gold transition-colors">
+								<X size={24} />
+							</button>
+						</div>
+
+						{/* Content */}
+						<div className="flex-1 overflow-y-auto p-6">
+							{success ? (
+								<div className="h-full flex flex-col items-center justify-center text-center">
+									<div className="w-20 h-20 rounded-full bg-gold/10 text-gold flex items-center justify-center mb-6">
+										<ArrowRight size={40} className="-rotate-45" />
+									</div>
+									<h3 className="text-3xl font-serif text-cream mb-4">
+										Заказ принят!
+									</h3>
+									<p className="text-white/60">
+										Наш менеджер свяжется с вами в течение 15 минут для
+										подтверждения деталей.
+									</p>
+								</div>
+							) : items.length === 0 ? (
+								<div className="h-full flex flex-col items-center justify-center text-center text-white/30">
+									<p>Ваша корзина пуста</p>
+								</div>
+							) : isCheckout ? (
+								/* Checkout Form */
+								<form
+									id="checkout-form"
+									onSubmit={handleSubmit}
+									className="space-y-6">
+									<div>
+										<label className="text-xs uppercase tracking-widest text-gold mb-2 block">
+											Ваше имя
+										</label>
+										<input
+											required
+											type="text"
+											value={formData.name}
+											onChange={(e) =>
+												setFormData({ ...formData, name: e.target.value })
+											}
+											className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-cream focus:border-gold outline-none transition-colors"
+											placeholder="Иван Иванов"
+										/>
+									</div>
+									<div>
+										<label className="text-xs uppercase tracking-widest text-gold mb-2 block">
+											Телефон
+										</label>
+										<input
+											required
+											type="tel"
+											value={formData.phone}
+											onChange={(e) =>
+												setFormData({ ...formData, phone: e.target.value })
+											}
+											className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-cream focus:border-gold outline-none transition-colors"
+											placeholder="+7 (999) 000-00-00"
+										/>
+									</div>
+									<div>
+										<label className="text-xs uppercase tracking-widest text-gold mb-2 block">
+											Комментарий
+										</label>
+										<textarea
+											rows={3}
+											value={formData.comment}
+											onChange={(e) =>
+												setFormData({ ...formData, comment: e.target.value })
+											}
+											className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-cream focus:border-gold outline-none transition-colors resize-none"
+											placeholder="Код домофона, этаж..."
+										/>
+									</div>
+								</form>
+							) : (
+								/* Cart Items List */
+								<div className="space-y-6">
+									{items.map((item) => (
+										<div key={item.cartId} className="flex gap-4">
+											<div className="relative w-20 h-24 bg-white/5 rounded-lg overflow-hidden shrink-0">
+												<Image
+													src={item.images?.main || ""}
+													alt={item.name}
+													fill
+													className="object-cover"
+												/>
+											</div>
+											<div className="flex-1 flex flex-col justify-between">
+												<div>
+													<div className="flex justify-between items-start">
+														<h4 className="font-serif text-cream text-lg">
+															{item.name}
+														</h4>
+														<button
+															onClick={() => removeItem(item.cartId)}
+															className="text-white/20 hover:text-red-400 transition-colors">
+															<Trash2 size={16} />
+														</button>
+													</div>
+													<p className="text-xs text-white/50 uppercase tracking-widest mt-1">
+														Размер: {item.selectedSize.height}
+													</p>
+												</div>
+												<div className="flex justify-between items-end">
+													<div className="flex items-center gap-3 bg-white/5 rounded-full px-3 py-1">
+														<button
+															onClick={() => updateQuantity(item.cartId, -1)}
+															className="text-white/50 hover:text-white">
+															<Minus size={14} />
+														</button>
+														<span className="text-sm font-mono w-4 text-center">
+															{item.quantity}
+														</span>
+														<button
+															onClick={() => updateQuantity(item.cartId, 1)}
+															className="text-white/50 hover:text-white">
+															<Plus size={14} />
+														</button>
+													</div>
+													<span className="text-gold font-sans">
+														{new Intl.NumberFormat("ru-RU").format(
+															item.selectedSize.price * item.quantity
+														)}{" "}
+														₽
+													</span>
+												</div>
+											</div>
+										</div>
+									))}
+								</div>
+							)}
+						</div>
+
+						{/* Footer / Actions */}
+						{!success && items.length > 0 && (
+							<div className="p-6 border-t border-white/10 bg-[#0B2319]">
+								<div className="flex justify-between items-center mb-6">
+									<span className="text-white/50 text-sm uppercase tracking-widest">
+										Итого:
+									</span>
+									<span className="text-2xl font-serif text-cream">
+										{new Intl.NumberFormat("ru-RU").format(totalPrice())} ₽
+									</span>
+								</div>
+
+								{isCheckout ? (
+									<div className="flex gap-4">
+										<button
+											onClick={() => setIsCheckout(false)}
+											className="w-1/3 py-4 rounded-full border border-white/20 bg-transparent text-cream text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-white hover:text-forest hover:border-white active:scale-95">
+											Назад
+										</button>
+										<button
+											type="submit"
+											form="checkout-form"
+											disabled={loading}
+											className="flex-1 py-4 rounded-full border border-white/20 bg-transparent text-cream text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gold hover:text-forest hover:border-gold active:scale-95 flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+											{loading && (
+												<Loader2 size={16} className="animate-spin" />
+											)}
+											{loading ? "Отправка..." : "Подтвердить"}
+										</button>
+									</div>
+								) : (
+									<button
+										onClick={() => setIsCheckout(true)}
+										className="w-full py-4 rounded-full border border-white/20 bg-transparent text-cream text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gold hover:text-forest hover:border-gold active:scale-95">
+										Оформить заказ
+									</button>
+								)}
+							</div>
+						)}
+					</motion.div>
+				</>
+			)}
+		</AnimatePresence>
+	);
+}

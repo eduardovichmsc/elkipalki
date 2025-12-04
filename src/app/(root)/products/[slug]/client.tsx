@@ -9,6 +9,7 @@ import { PATHS } from "@/config/paths";
 import Accordion from "@/components/accordion";
 import ProductCard from "@/components/catalog/card";
 import FavoriteButton from "@/components/ui/favorite_button";
+import { useCartStore } from "@/store/cart";
 
 interface ProductPageClientProps {
 	product: Product;
@@ -19,8 +20,8 @@ export default function ProductPageClient({
 	product,
 	relatedProducts,
 }: ProductPageClientProps) {
-	// Состояние выбранного размера (по умолчанию первый)
 	const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+	const { addItem } = useCartStore();
 
 	return (
 		<div className="pt-32 pb-24 px-6 md:px-12 max-w-[1800px] mx-auto">
@@ -163,8 +164,21 @@ export default function ProductPageClient({
 						</div>
 
 						<div className="flex gap-4 mb-12">
-							<button className="flex-1 bg-cream text-forest py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gold transition-colors duration-300">
-								Добавить в корзину
+							<button
+								onClick={() => addItem(product, selectedSize)}
+								disabled={!selectedSize.available}
+								className="
+    flex-1 py-4 rounded-full
+    border border-white/20 bg-transparent
+    text-cream text-xs font-bold uppercase tracking-[0.2em]
+    transition-all duration-300
+    hover:bg-gold hover:border-gold hover:text-forest
+    active:scale-95
+    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-cream disabled:hover:border-white/20
+  ">
+								{selectedSize.available
+									? "Добавить в корзину"
+									: "Нет в наличии"}
 							</button>
 
 							<div className="w-14 h-14 border border-white/20 rounded-full flex items-center justify-center hover:border-gold transition-colors">

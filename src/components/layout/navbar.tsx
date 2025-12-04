@@ -7,6 +7,7 @@ import { PATHS } from "@/config/paths";
 import { useLenis } from "@/components/layout/scroll";
 import { useMounted } from "@/hooks/useMounted";
 import { useFavoritesStore } from "@/store/favorites";
+import { useCartStore } from "@/store/cart";
 
 const navLinks = [
 	{ name: "Коллекция", href: PATHS.CATALOG },
@@ -18,9 +19,13 @@ export default function Navbar() {
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-	const { items } = useFavoritesStore();
+	const { items: favItems } = useFavoritesStore();
 	const isMounted = useMounted();
-	const favoritesCount = isMounted ? items.length : 0;
+	const favoritesCount = isMounted ? favItems.length : 0;
+	const { openCart, items: cartItems } = useCartStore();
+	const cartCount = isMounted
+		? cartItems.reduce((acc, item) => acc + item.quantity, 0)
+		: 0;
 
 	const lenis = useLenis();
 
@@ -104,6 +109,17 @@ export default function Navbar() {
 								</span>
 							)}
 						</Link>
+
+						<button
+							onClick={openCart} // Вешаем открытие
+							className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-forest transition-all duration-300 cursor-pointer">
+							<ShoppingBag size={18} />
+							{cartCount > 0 && (
+								<span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-cream text-[10px] font-bold text-forest">
+									{cartCount}
+								</span>
+							)}
+						</button>
 					</div>
 				</div>
 			</motion.header>
