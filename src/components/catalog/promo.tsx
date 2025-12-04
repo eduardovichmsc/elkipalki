@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { PATHS } from "@/config/paths";
 
 export default function PromoCard() {
@@ -33,8 +33,8 @@ export default function PromoCard() {
 				<Link
 					href={PATHS.CONTACTS.TELEGRAM}
 					target="_blank"
-					className="flex items-center gap-4 text-forest font-bold uppercase tracking-widest text-xs group-hover:gap-6 transition-all">
-					Написать стилисту <ArrowRight size={16} />
+					className="flex items-center gap-4 text-forest font-bold uppercase tracking-widest text-xs">
+					Написать стилисту <ArrowUpRight size={18} />
 				</Link>
 			</div>
 

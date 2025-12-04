@@ -2,7 +2,7 @@ import { MoveRight } from "lucide-react";
 
 export default function About() {
 	return (
-		<section id="about" className="py-32 px-12 bg-cream text-forest">
+		<section id="about" className="py-32 px-6 md:px-12 bg-cream text-forest">
 			<div className="max-w-4xl">
 				<p className="text-lg md:text-xl uppercase tracking-widest mb-8 text-gold font-bold">
 					О нас

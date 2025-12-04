@@ -47,9 +47,9 @@ export default function Process() {
 				</div>
 
 				{/* Правая часть */}
-				<div className="absolute right-0 top-0 w-full md:w-1/2 h-full flex flex-col justify-center px-6 md:px-24 bg-cream hidden md:flex">
+				<div className="absolute right-0 top-0 w-full md:w-1/2 h-full flex-col justify-center px-6 md:px-24 bg-cream hidden md:flex">
 					{/* Декоративная линия */}
-					<div className="absolute left-0 top-12 bottom-12 w-[1px] bg-forest/5" />
+					<div className="absolute left-0 top-12 bottom-12 w-px bg-forest/5" />
 				</div>
 			</div>
 
@@ -64,7 +64,7 @@ export default function Process() {
 						{steps.map((step, i) => (
 							<div
 								key={i}
-								className="h-[75vh] flex flex-col justify-center px-6 md:px-24">
+								className="h-[50vh] md:h-[75vh] flex flex-col justify-center px-6 md:px-24">
 								{/* Карточка для мобилки с блюром, для десктопа прозрачная */}
 								<motion.div
 									initial={{ opacity: 0, y: 50 }}
