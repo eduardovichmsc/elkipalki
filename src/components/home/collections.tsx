@@ -3,7 +3,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { cn } from "@/lib/utils"; // Если нет utils, удали и используй шаблонные строки
 
 const collections = [
 	{
@@ -63,11 +62,7 @@ export default function Collections() {
 						key={item.id}
 						onClick={() => setActiveId(item.id)}
 						className={`relative cursor-pointer overflow-hidden rounded-none md:rounded-2xl transition-all duration-700 ease-[0.32,0.72,0,1]
-              ${
-								activeId === item.id
-									? "flex-[3] md:flex-[3]"
-									: "flex-[1] md:flex-[1]"
-							}
+              ${activeId === item.id ? "flex-[3]" : "flex-[1]"}
               h-full group
             `}>
 						{/* Background Image */}

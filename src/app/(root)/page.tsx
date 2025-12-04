@@ -4,14 +4,22 @@ import Marquee from "@/components/marquee";
 import Process from "@/components/home/process";
 import About from "@/components/home/about";
 import Delivery from "@/components/home/delivery";
+import { client } from "@/sanity/client";
+import { PRODUCTS_QUERY } from "@/sanity/queries";
 
-export default function Home() {
+export default async function Home() {
+	const products = await client.fetch(
+		PRODUCTS_QUERY,
+		{},
+		{ next: { revalidate: 60 } }
+	);
+
 	return (
 		<main className="min-h-screen bg-forest">
 			<Hero />
 			<Marquee />
 			<About />
-			<Catalog />
+			<Catalog products={products} />
 			<Process />
 			<Delivery />
 		</main>

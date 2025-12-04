@@ -4,8 +4,13 @@ import { products } from "@/data/products";
 import ProductCard from "@/components/catalog/card";
 import Link from "next/link";
 import { PATHS } from "@/config/paths";
+import { Product } from "@/types";
 
-export default function Catalog() {
+type Props = {
+	products: Product[];
+};
+
+export default function Catalog({ products }: Props) {
 	const homepageProducts = products.slice(0, 3);
 
 	return (

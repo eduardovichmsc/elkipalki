@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ShoppingBag, Menu, X } from "lucide-react";
+import { ShoppingBag, Menu, X, Settings } from "lucide-react"; // 1. Добавили Settings
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { PATHS } from "@/config/paths";
@@ -16,7 +16,6 @@ export default function Navbar() {
 	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-	// Получаем экземпляр Lenis
 	const lenis = useLenis();
 
 	const handleScroll = (
@@ -29,8 +28,6 @@ export default function Navbar() {
 
 			if (elem) {
 				e.preventDefault();
-				// Используем метод lenis для супер-плавного скролла
-				// offset: -100 нужен, чтобы заголовок не прятался под навбаром
 				lenis?.scrollTo(elem, { offset: -100, duration: 2 });
 				setIsMenuOpen(false);
 			}
@@ -68,6 +65,15 @@ export default function Navbar() {
 					</nav>
 
 					<div className="flex items-center gap-2 pl-4 pr-2">
+						{/* 2. Кнопка Админки (Скрыта на мобильных, открывается в новой вкладке) */}
+						<Link
+							href="/studio"
+							target="_blank"
+							title="Панель администратора"
+							className="hidden md:flex w-10 h-10 items-center justify-center rounded-full hover:bg-white/10 text-cream/40 hover:text-gold transition-all duration-300">
+							<Settings size={16} />
+						</Link>
+
 						<button className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-forest transition-all duration-300 cursor-pointer">
 							<ShoppingBag size={18} />
 							<span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-cream text-[10px] font-bold text-forest opacity-0 group-hover:opacity-100 transition-opacity">
@@ -114,6 +120,17 @@ export default function Navbar() {
 									</Link>
 								</motion.div>
 							))}
+							{/* Ссылка на админку для мобильных (внизу списка, опционально) */}
+							<motion.div
+								initial={{ y: 50, opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
+								transition={{ delay: 0.6 }}>
+								<Link
+									href="/studio"
+									className="text-sm uppercase tracking-widest text-white/30 hover:text-gold mt-8 block">
+									Admin Panel
+								</Link>
+							</motion.div>
 						</nav>
 
 						<div className="absolute bottom-12 text-xs uppercase tracking-widest opacity-40">

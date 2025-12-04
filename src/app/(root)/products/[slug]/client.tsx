@@ -42,7 +42,7 @@ export default function ProductPageClient({
 					{/* Main Image */}
 					<div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-pine/30">
 						<Image
-							src={product.images.main}
+							src={product.images?.main || "/placeholder.jpg"} // Заглушка на всякий случай
 							alt={product.name}
 							fill
 							className="object-cover"
