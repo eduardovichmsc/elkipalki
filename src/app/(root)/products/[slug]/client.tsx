@@ -24,7 +24,7 @@ export default function ProductPageClient({
 	const { addItem } = useCartStore();
 
 	return (
-		<div className="pt-32 pb-24 px-6 md:px-12 max-w-[1800px] mx-auto">
+		<div className="pt-32 pb-24 px-6 md:px-12 mx-auto">
 			{/* Back Button */}
 			<div className="mb-8">
 				<Link
@@ -42,7 +42,7 @@ export default function ProductPageClient({
 					transition={{ duration: 0.8 }}
 					className="lg:w-[60%] space-y-4">
 					{/* Main Image */}
-					<div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-pine/30">
+					<div className="relative aspect-4/5 w-full overflow-hidden rounded-sm bg-pine/30">
 						<Image
 							src={product.images?.main || "/placeholder.jpg"} // Заглушка на всякий случай
 							alt={product.name}
@@ -89,7 +89,7 @@ export default function ProductPageClient({
 										? "Bestseller"
 										: "Premium Collection"}
 								</span>
-								<div className="h-[1px] w-8 bg-gold/30"></div>
+								<div className="h-px w-8 bg-gold/30"></div>
 								<span className="text-white/40 font-serif italic">
 									{product.latinName}
 								</span>

@@ -72,7 +72,7 @@ export default function CatalogClient({
 	return (
 		<>
 			{/* --- HERO SECTION --- */}
-			<section className="pt-32 pb-12 px-6 md:px-24">
+			<section className="pt-32 pb-12 px-12">
 				<div className="flex items-center gap-2 text-xs uppercase tracking-widest text-white/30 mb-8 font-mono">
 					<Link href={PATHS.HOME} className="hover:text-gold transition-colors">
 						Home
@@ -105,7 +105,7 @@ export default function CatalogClient({
 			</section>
 
 			{/* --- CONTROLS & GRID --- */}
-			<section className="px-6 md:px-24 pb-24 relative z-10">
+			<section className="px-6 md:px-12 pb-24 relative z-10">
 				{/* Sticky Filter Bar */}
 				<div className="top-6 z-40 mb-16">
 					<div className="bg-forest/80 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex flex-wrap justify-between items-center shadow-2xl">

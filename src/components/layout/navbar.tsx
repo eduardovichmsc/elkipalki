@@ -8,6 +8,7 @@ import { useLenis } from "@/components/layout/scroll";
 import { useMounted } from "@/hooks/useMounted";
 import { useFavoritesStore } from "@/store/favorites";
 import { useCartStore } from "@/store/cart";
+import TransitionLink from "../ui/link";
 
 const navLinks = [
 	{ name: "Коллекция", href: PATHS.CATALOG },
@@ -53,15 +54,15 @@ export default function Navbar() {
 				transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
 				className="fixed top-6 left-0 right-0 z-50 flex justify-center items-center px-4">
 				<div className="relative flex items-center justify-between px-2 py-2 bg-forest/60 backdrop-blur-md border border-white/10 rounded-full shadow-2xl shadow-black/20 md:min-w-[500px]">
-					<Link
+					<TransitionLink
 						href="/"
 						className="pl-6 pr-4 font-serif text-xl tracking-widest text-cream">
 						NOËL
-					</Link>
+					</TransitionLink>
 
 					<nav className="hidden md:flex items-center gap-2 bg-black/20 rounded-full px-2 py-1.5 border border-white/5">
 						{navLinks.map((link, index) => (
-							<Link
+							<TransitionLink
 								key={link.name}
 								href={link.href}
 								onClick={(e) => handleScroll(e, link.href)}
@@ -71,19 +72,19 @@ export default function Navbar() {
 								<span className="block relative z-10 px-4 py-2">
 									{link.name}
 								</span>
-							</Link>
+							</TransitionLink>
 						))}
 					</nav>
 
 					<div className="flex items-center gap-2 pl-4 pr-2">
 						{/* 2. Кнопка Админки (Скрыта на мобильных, открывается в новой вкладке) */}
-						<Link
+						<TransitionLink
 							href="/studio"
 							target="_blank"
 							title="Панель администратора"
 							className="hidden md:flex w-10 h-10 items-center justify-center rounded-full hover:bg-white/10 text-cream/40 hover:text-gold transition-all duration-300">
 							<Settings size={16} />
-						</Link>
+						</TransitionLink>
 
 						<button
 							onClick={openCart}
@@ -101,7 +102,7 @@ export default function Navbar() {
 						</button>
 
 						{/* Кнопка Избранного */}
-						<Link
+						<TransitionLink
 							href="/favorites"
 							className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-forest transition-all duration-300 cursor-pointer">
 							<Heart size={18} />
@@ -110,7 +111,7 @@ export default function Navbar() {
 									{favoritesCount}
 								</span>
 							)}
-						</Link>
+						</TransitionLink>
 					</div>
 				</div>
 			</motion.header>
@@ -137,12 +138,12 @@ export default function Navbar() {
 									initial={{ y: 50, opacity: 0 }}
 									animate={{ y: 0, opacity: 1 }}
 									transition={{ delay: 0.2 + i * 0.1 }}>
-									<Link
+									<TransitionLink
 										href={link.href}
 										onClick={(e) => handleScroll(e, link.href)}
 										className="text-4xl font-serif italic hover:text-gold transition-colors">
 										{link.name}
-									</Link>
+									</TransitionLink>
 								</motion.div>
 							))}
 							{/* Ссылка на админку для мобильных (внизу списка, опционально) */}
@@ -150,11 +151,11 @@ export default function Navbar() {
 								initial={{ y: 50, opacity: 0 }}
 								animate={{ y: 0, opacity: 1 }}
 								transition={{ delay: 0.6 }}>
-								<Link
+								<TransitionLink
 									href="/studio"
 									className="text-sm uppercase tracking-widest text-white/30 hover:text-gold mt-8 block">
 									Admin Panel
-								</Link>
+								</TransitionLink>
 							</motion.div>
 						</nav>
 

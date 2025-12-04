@@ -4,7 +4,7 @@ import { Product, ProductSize } from "@/types/product";
 
 // Расширяем тип продукта, добавляя выбранный размер и количество
 export interface CartItem extends Product {
-	cartId: string; // Уникальный ID (product.id + size.id)
+	cartId: string;
 	selectedSize: ProductSize;
 	quantity: number;
 }

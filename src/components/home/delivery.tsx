@@ -20,9 +20,6 @@ export default function Delivery() {
 			{/* Header */}
 			<div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
 				<div>
-					<span className="text-gold uppercase tracking-widest text-xs font-bold mb-4 block">
-						Premium Service
-					</span>
 					<h2 className="text-4xl md:text-6xl font-serif text-cream leading-[1.1]">
 						Сервис белых перчаток
 					</h2>
@@ -48,7 +45,7 @@ export default function Delivery() {
 						fill
 						className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
 					/>
-					<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+					<div className="absolute inset-0 from-black/80 via-transparent to-transparent" />
 
 					<div className="absolute bottom-8 left-8 right-8">
 						<div className="w-12 h-12 rounded-full bg-cream text-forest flex items-center justify-center mb-6">

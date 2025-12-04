@@ -57,6 +57,7 @@ export const RELATED_PRODUCTS_QUERY = groq`*[_type == "product" && slug.current 
   _id,
   "id": _id,
   name,
+  "slug": slug.current,
   latinName,
   startPrice,
   shortDesc,

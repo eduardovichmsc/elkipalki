@@ -12,6 +12,8 @@ export default function FavoritesPage() {
 
 	if (!isMounted) return null;
 
+	console.log(items);
+
 	return (
 		<main className="min-h-screen bg-forest">
 			<section className="pt-32 pb-24 px-6 md:px-24">

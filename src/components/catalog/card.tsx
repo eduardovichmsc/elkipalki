@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Product } from "@/types/product";
 import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
 import { PATHS } from "@/config/paths";
-import FavoriteButton from "@/components/ui/favorite_button"; // Импорт нашей кнопки
+import FavoriteButton from "@/components/ui/favorite_button";
+import TransitionLink from "../ui/link";
 
 interface ProductCardProps {
 	product: Product;
@@ -13,17 +13,21 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, index }: ProductCardProps) {
+	console.log(product);
+
 	return (
 		<motion.div
-			layout // Для плавного перестроения сетки при фильтрации
+			layout
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			exit={{ opacity: 0, scale: 0.9 }}
 			transition={{ duration: 0.4, delay: index * 0.05 }}
 			className="group cursor-pointer flex flex-col h-full relative">
-			<Link href={PATHS.PRODUCT(product.slug)} className="block h-full">
+			<TransitionLink
+				href={PATHS.PRODUCT(product.slug)}
+				className="block h-full">
 				{/* --- Image Container --- */}
-				<div className="relative aspect-[4/5] overflow-hidden mb-6 bg-pine/30 rounded-sm">
+				<div className="relative aspect-4/5 overflow-hidden mb-6 bg-pine/30 rounded-sm">
 					{/* Badge: Bestseller / New / Sale */}
 					{product.tags?.includes("bestseller") && (
 						<div className="absolute top-4 left-4 z-20 bg-gold text-forest text-[10px] font-bold px-3 py-1 uppercase tracking-widest pointer-events-none">
@@ -43,7 +47,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 						</div>
 					)}
 
-					{/* --- Кнопка Лайка (Абсолютное позиционирование) --- */}
+					{/* Кнопка Лайка */}
 					<div className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 						<FavoriteButton
 							product={product}
@@ -65,7 +69,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 						/>
 
-						{/* Hover Image (если есть) */}
+						{/* Hover Image */}
 						{product.images?.hover && (
 							<Image
 								src={product.images.hover}
@@ -86,7 +90,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 				</div>
 
 				{/* --- Content --- */}
-				<div className="flex flex-col flex-grow">
+				<div className="flex flex-col grow">
 					<div className="flex justify-between items-start mb-2">
 						<div>
 							<span className="text-white/40 text-xs font-serif italic mb-1 block">
@@ -111,9 +115,9 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 					</div>
 
 					{/* Decorative Line */}
-					<div className="w-full h-[1px] bg-white/10 my-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+					<div className="w-full h-px bg-white/10 my-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-					{/* Available Sizes (Mini visualization) */}
+					{/* Available Sizes */}
 					{product.sizes && product.sizes.length > 0 && (
 						<div className="flex gap-2 mb-4 opacity-50 text-[10px] uppercase tracking-wider">
 							{product.sizes.slice(0, 3).map((s) => (
@@ -131,7 +135,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 						{product.shortDesc}
 					</p>
 				</div>
-			</Link>
+			</TransitionLink>
 		</motion.div>
 	);
 }

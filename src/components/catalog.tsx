@@ -29,7 +29,7 @@ export default function Catalog({ products }: Props) {
 					{/* Ссылка на полный каталог */}
 					<Link
 						href={PATHS.CATALOG}
-						className="hidden md:block text-gold uppercase tracking-widest text-xs border-b border-transparent hover:border-gold transition-colors mr-4">
+						className="hidden md:block text-gold uppercase tracking-widest text-xs border-b border-transparent hover:border-gold transition-colors">
 						Смотреть все
 					</Link>
 				</div>
