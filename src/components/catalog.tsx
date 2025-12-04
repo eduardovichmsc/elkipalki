@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { products } from "@/data/products";
 import ProductCard from "@/components/catalog/card";
 import Link from "next/link";
 import { PATHS } from "@/config/paths";

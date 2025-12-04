@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
 import { PATHS } from "@/config/paths";
-import { Product } from "@/types/product"; // Импортируем тип
+import { Category, Product } from "@/types/product"; // Импортируем тип
 
 // Типы фильтров
 type FilterType = "all" | "bestseller" | "new" | "limited";
@@ -20,34 +20,53 @@ const filters: { id: FilterType; label: string }[] = [
 ];
 
 interface CatalogClientProps {
-	products: Product[]; // Принимаем данные как пропсы
+	products: Product[];
+	categories: Category[];
 }
 
-export default function CatalogClient({ products }: CatalogClientProps) {
-	const [activeFilter, setActiveFilter] = useState<FilterType>("all");
+export default function CatalogClient({
+	products,
+	categories,
+}: CatalogClientProps) {
+	// activeFilter теперь хранит slug категории (строка) или 'all'
+	const [activeFilter, setActiveFilter] = useState<string>("all");
 	const [isSortOpen, setIsSortOpen] = useState(false);
 	const [sortOrder, setSortOrder] = useState<"price-asc" | "price-desc">(
 		"price-asc"
 	);
 
-	// 1. Фильтрация (используем products из пропсов)
+	// 1. Формируем список фильтров динамически
+	// Сначала "Вся коллекция", потом список из Sanity
+	const filters = useMemo(() => {
+		const allOption = { id: "all", label: "Вся коллекция" };
+		const categoryOptions = categories.map((cat) => ({
+			id: cat.slug,
+			label: cat.title,
+		}));
+		return [allOption, ...categoryOptions];
+	}, [categories]);
+
+	// 2. Фильтрация
 	const filteredProducts = useMemo(() => {
 		let result = products;
+
 		if (activeFilter !== "all") {
-			// Проверяем наличие тегов, так как в Sanity поле может быть пустым (null)
-			result = products.filter((p) => p.tags?.includes(activeFilter as any));
+			// Фильтруем по слагу категории
+			result = products.filter((p) => p.category?.slug === activeFilter);
 		}
-		// 2. Сортировка
+
+		// Сортировка
 		return [...result].sort((a, b) => {
-			if (sortOrder === "price-asc") return a.startPrice - b.startPrice;
-			return b.startPrice - a.startPrice;
+			if (sortOrder === "price-asc")
+				return (a.startPrice || 0) - (b.startPrice || 0);
+			return (b.startPrice || 0) - (a.startPrice || 0);
 		});
 	}, [activeFilter, sortOrder, products]);
 
-	// Подсчет количества
-	const getCount = (filterId: FilterType) => {
+	// Подсчет количества товаров для бейджиков
+	const getCount = (filterId: string) => {
 		if (filterId === "all") return products.length;
-		return products.filter((p) => p.tags?.includes(filterId as any)).length;
+		return products.filter((p) => p.category?.slug === filterId).length;
 	};
 
 	return (
@@ -90,7 +109,7 @@ export default function CatalogClient({ products }: CatalogClientProps) {
 				{/* Sticky Filter Bar */}
 				<div className="top-6 z-40 mb-16">
 					<div className="bg-forest/80 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 flex flex-wrap justify-between items-center shadow-2xl">
-						{/* Filters */}
+						{/* Filters (Dynamic) */}
 						<div className="flex flex-wrap gap-1">
 							{filters.map((filter) => (
 								<button
@@ -126,9 +145,7 @@ export default function CatalogClient({ products }: CatalogClientProps) {
 								</span>
 								<ChevronDown
 									size={14}
-									className={`transition-transform ${
-										isSortOpen ? "rotate-180" : ""
-									}`}
+									className={`transition-transform ${isSortOpen ? "rotate-180" : ""}`}
 								/>
 							</button>
 

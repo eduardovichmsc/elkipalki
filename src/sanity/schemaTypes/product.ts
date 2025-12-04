@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { Trees } from "lucide-react"; // Иконка для меню
+import { Trees } from "lucide-react";
 
 export const product = defineType({
 	name: "product",
@@ -18,6 +18,14 @@ export const product = defineType({
 			title: "Slug (ссылка)",
 			type: "slug",
 			options: { source: "name" },
+			validation: (Rule) => Rule.required(),
+		}),
+
+		defineField({
+			name: "category",
+			title: "Категория",
+			type: "reference", // Ссылка на другой документ
+			to: [{ type: "category" }], // Ссылка на тип 'category'
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
@@ -41,12 +49,11 @@ export const product = defineType({
 			title: "Цена ОТ",
 			type: "number",
 		}),
-		// Группа изображений
 		defineField({
 			name: "mainImage",
 			title: "Главное фото",
 			type: "image",
-			options: { hotspot: true }, // Позволяет выбирать фокусную точку
+			options: { hotspot: true },
 		}),
 		defineField({
 			name: "hoverImage",
@@ -54,7 +61,6 @@ export const product = defineType({
 			type: "image",
 			options: { hotspot: true },
 		}),
-		// Характеристики
 		defineField({
 			name: "specs",
 			title: "Характеристики",
@@ -70,7 +76,6 @@ export const product = defineType({
 				}),
 			],
 		}),
-		// Размеры и цены
 		defineField({
 			name: "sizes",
 			title: "Варианты размеров",
@@ -95,10 +100,9 @@ export const product = defineType({
 				},
 			],
 		}),
-		// Теги
 		defineField({
 			name: "tags",
-			title: "Теги",
+			title: "Теги (Бейджи)",
 			type: "array",
 			of: [{ type: "string" }],
 			options: {

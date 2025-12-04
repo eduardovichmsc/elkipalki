@@ -7,6 +7,12 @@ export interface ProductSize {
 	available: boolean;
 }
 
+export interface Category {
+	_id: string;
+	title: string;
+	slug: string;
+}
+
 export interface Product {
 	id: string;
 	slug: string; // для ссылки, например /product/nordmann-gold
@@ -14,6 +20,7 @@ export interface Product {
 	latinName: string; // Abies nordmanniana - для пафоса
 	description: string; // Полное описание
 	shortDesc: string; // Для карточки в каталоге
+	category: Category;
 
 	// Цены
 	startPrice: number; // Цена "от"

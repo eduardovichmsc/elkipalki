@@ -20,8 +20,8 @@ export default async function Home() {
 			<Marquee />
 			<About />
 			<Catalog products={products} />
-			<Process />
 			<Delivery />
+			<Process />
 		</main>
 	);
 }

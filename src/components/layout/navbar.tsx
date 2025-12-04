@@ -85,10 +85,12 @@ export default function Navbar() {
 							<Settings size={16} />
 						</Link>
 
-						<button className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-forest transition-all duration-300 cursor-pointer">
+						<button
+							onClick={openCart}
+							className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-forest transition-all duration-300 cursor-pointer">
 							<ShoppingBag size={18} />
 							<span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-cream text-[10px] font-bold text-forest opacity-0 group-hover:opacity-100 transition-opacity">
-								2
+								{cartCount}
 							</span>
 						</button>
 
@@ -109,17 +111,6 @@ export default function Navbar() {
 								</span>
 							)}
 						</Link>
-
-						<button
-							onClick={openCart} // Вешаем открытие
-							className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-forest transition-all duration-300 cursor-pointer">
-							<ShoppingBag size={18} />
-							{cartCount > 0 && (
-								<span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-cream text-[10px] font-bold text-forest">
-									{cartCount}
-								</span>
-							)}
-						</button>
 					</div>
 				</div>
 			</motion.header>
