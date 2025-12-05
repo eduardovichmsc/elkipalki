@@ -1,7 +1,8 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function Hero() {
 	const containerRef = useRef(null);
@@ -10,11 +11,14 @@ export default function Hero() {
 		offset: ["start start", "end start"],
 	});
 
+	const [isImageLoaded, setIsImageLoaded] = useState(false);
+
 	const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 	const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
 	return (
 		<section
+			id="home"
 			ref={containerRef}
 			className="relative h-[100dvh] w-full overflow-hidden flex flex-col items-center justify-center">
 			{/* Background Parallax */}
@@ -23,7 +27,11 @@ export default function Hero() {
 					src="https://images.unsplash.com/photo-1543589077-47d81606c1bf?q=80&w=2574&auto=format&fit=crop"
 					alt="Christmas Atmosphere"
 					fill
-					className="object-cover opacity-60"
+					onLoad={() => setIsImageLoaded(true)}
+					className={cn(
+						"object-cover pointer-events-none transition-all duration-1000 ease-in-out opacity-60",
+						isImageLoaded ? "opacity-100 blur-0" : "opacity-0 blur-sm"
+					)}
 					priority
 				/>
 				{/* Исправлен градиент: добавлено bg-gradient-to-b */}
@@ -36,7 +44,11 @@ export default function Hero() {
 					<motion.h1
 						initial={{ y: "100%" }}
 						animate={{ y: 0 }}
-						transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 0.2 }}
+						transition={{
+							duration: 1,
+							ease: [0.76, 0, 0.24, 1],
+							delay: 0.3 + 0.5,
+						}}
 						// Увеличили размер на мобилках до 17vw
 						className="text-[17vw] md:text-[12vw] leading-[0.9] font-serif text-cream mix-blend-overlay tracking-tight">
 						Christmas
@@ -46,7 +58,11 @@ export default function Hero() {
 					<motion.h1
 						initial={{ y: "100%" }}
 						animate={{ y: 0 }}
-						transition={{ duration: 1, ease: [0.76, 0, 0.24, 1], delay: 0.3 }}
+						transition={{
+							duration: 1,
+							ease: [0.76, 0, 0.24, 1],
+							delay: 0.3 + 0.5,
+						}}
 						// Увеличили размер и добавили padding-right для динамики
 						className="text-[17vw] md:text-[12vw] leading-[0.9] font-serif text-gold italic tracking-tighter pr-4 md:pr-0">
 						Magic
@@ -57,7 +73,7 @@ export default function Hero() {
 					style={{ opacity }}
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
-					transition={{ delay: 0.8, duration: 0.8 }}
+					transition={{ delay: 0.3 + 0.5, duration: 0.8 }}
 					className="mt-8 text-xs md:text-lg uppercase tracking-[0.3em] font-light max-w-[280px] md:max-w-md mx-auto text-cream/80">
 					Премиальные живые ели из датских питомников
 				</motion.p>
@@ -73,7 +89,7 @@ export default function Hero() {
 				<span className="text-[10px] uppercase tracking-widest text-white/40">
 					Scroll
 				</span>
-				<div className="w-px h-12 bg-gradient-to-b from-gold via-white/20 to-transparent">
+				<div className="w-px h-12 from-gold via-white/20 to-transparent">
 					<motion.div
 						animate={{ y: [0, 48, 48] }}
 						transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

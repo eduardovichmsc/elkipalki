@@ -16,7 +16,7 @@ export default function RootLayout({
 				<PageTransitionOverlay />
 				<CartDrawer />
 				<Navbar />
-				{children}
+				<main className="relative z-10 bg-neutral-950">{children}</main>
 				<Footer />
 			</SmoothScroll>
 		</TransitionProvider>

@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowLeft, Star, Truck, ShieldCheck } from "lucide-react";
 import { Product } from "@/types/product";
 import { PATHS } from "@/config/paths";
@@ -10,6 +9,7 @@ import Accordion from "@/components/accordion";
 import ProductCard from "@/components/catalog/card";
 import FavoriteButton from "@/components/ui/favorite_button";
 import { useCartStore } from "@/store/cart";
+import TransitionLink from "@/components/ui/link";
 
 interface ProductPageClientProps {
 	product: Product;
@@ -27,11 +27,11 @@ export default function ProductPageClient({
 		<div className="pt-32 pb-24 px-6 md:px-12 mx-auto">
 			{/* Back Button */}
 			<div className="mb-8">
-				<Link
+				<TransitionLink
 					href={PATHS.CATALOG}
 					className="inline-flex items-center gap-2 text-white/40 hover:text-gold transition-colors text-xs uppercase tracking-widest">
 					<ArrowLeft size={14} /> Back to Catalog
-				</Link>
+				</TransitionLink>
 			</div>
 
 			<div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
@@ -137,7 +137,7 @@ export default function ProductPageClient({
                                     ${
 																			selectedSize.id === size.id
 																				? "border-gold text-gold bg-gold/5"
-																				: "border-white/10 text-white/60 hover:border-white/30"
+																				: "border-white/5 text-white/60 hover:border-white/30"
 																		}
                                     ${
 																			!size.available
@@ -240,11 +240,11 @@ export default function ProductPageClient({
 					<h2 className="text-4xl font-serif text-cream">
 						Вам может понравиться
 					</h2>
-					<Link
+					<TransitionLink
 						href={PATHS.CATALOG}
 						className="text-gold underline underline-offset-4 text-xs uppercase tracking-widest">
 						Смотреть все
-					</Link>
+					</TransitionLink>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					{relatedProducts.map((p, i) => (

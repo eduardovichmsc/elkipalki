@@ -13,8 +13,6 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, index }: ProductCardProps) {
-	console.log(product);
-
 	return (
 		<motion.div
 			layout

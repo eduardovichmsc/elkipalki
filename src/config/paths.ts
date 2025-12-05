@@ -1,5 +1,5 @@
 export const PATHS = {
-	HOME: "/",
+	HOME: "/#home",
 	CATALOG: "/products",
 	PRODUCT: (slug: string) => `${PATHS.CATALOG}/${slug}`,
 	SECTIONS: {
@@ -15,3 +15,9 @@ export const PATHS = {
 		EMAIL: "mailto:hello@noel-store.ru",
 	},
 } as const;
+
+export const NAVLINKS = [
+	{ name: "Коллекция", href: PATHS.CATALOG },
+	{ name: "О бренде", href: PATHS.SECTIONS.ABOUT },
+	{ name: "Доставка", href: PATHS.SECTIONS.DELIVERY },
+] as const;

@@ -20,7 +20,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 	useEffect(() => {
 		// Настройки для максимальной плавности
 		const lenisInstance = new Lenis({
-			duration: 1.2, // Длительность скролла (чем больше, тем плавнее)
+			duration: 1.2,
 			easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Функция плавности
 			orientation: "vertical",
 			gestureOrientation: "vertical",

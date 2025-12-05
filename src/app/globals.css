@@ -60,3 +60,10 @@ html.lenis body {
 ::-webkit-scrollbar-thumb:hover {
 	background-color: rgb(192, 192, 193);
 }
+
+::selection {
+	@apply bg-lime-800/50 text-white text-shadow-none;
+}
+::-moz-selection {
+	@apply bg-lime-800/50 text-white text-shadow-none;
+}

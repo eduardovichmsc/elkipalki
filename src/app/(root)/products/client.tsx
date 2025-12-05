@@ -5,12 +5,9 @@ import ProductCard from "@/components/catalog/card";
 import PromoCard from "@/components/catalog/promo";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, SlidersHorizontal } from "lucide-react";
-import Link from "next/link";
 import { PATHS } from "@/config/paths";
 import { Category, Product } from "@/types/product";
-
-// Типы фильтров удалены из кода, так как они теперь формируются динамически,
-// но если нужны статические, их можно вернуть.
+import TransitionLink from "@/components/ui/link";
 
 interface CatalogClientProps {
 	products: Product[];
@@ -63,9 +60,11 @@ export default function CatalogClient({
 			{/* --- HERO SECTION --- */}
 			<section className="pt-32 pb-12 px-6 md:px-12">
 				<div className="flex items-center gap-2 text-xs uppercase tracking-widest text-white/30 mb-8 font-mono">
-					<Link href={PATHS.HOME} className="hover:text-gold transition-colors">
+					<TransitionLink
+						href={PATHS.HOME}
+						className="hover:text-gold transition-colors">
 						Home
-					</Link>
+					</TransitionLink>
 					<span>/</span>
 					<span className="text-gold">Catalog</span>
 				</div>
@@ -168,13 +167,13 @@ export default function CatalogClient({
 										initial={{ opacity: 0, y: 10, scale: 0.95 }}
 										animate={{ opacity: 1, y: 0, scale: 1 }}
 										exit={{ opacity: 0, y: 10, scale: 0.95 }}
-										className="block absolute top-full right-0 mt-2 w-48 bg-[#1A4231] border border-white/10 rounded-xl overflow-hidden shadow-xl py-2 z-50">
+										className="block absolute top-0 right-0 mt-2 w-48 bg-[#1A4231] border border-white/10 rounded-xl overflow-hidden shadow-xl py-2 z-50">
 										<button
 											onClick={() => {
 												setSortOrder("price-asc");
 												setIsSortOpen(false);
 											}}
-											className="w-full text-left px-4 py-3 text-xs uppercase tracking-widest hover:bg-white/5 text-white/70 hover:text-gold transition-colors">
+											className="relative w-full text-left px-4 py-3 text-xs uppercase tracking-widest hover:bg-white/5 text-white/70 hover:text-gold transition-colors">
 											Сначала дешевле
 										</button>
 										<button
@@ -182,7 +181,7 @@ export default function CatalogClient({
 												setSortOrder("price-desc");
 												setIsSortOpen(false);
 											}}
-											className="w-full text-left px-4 py-3 text-xs uppercase tracking-widest hover:bg-white/5 text-white/70 hover:text-gold transition-colors">
+											className="relative w-full text-left px-4 py-3 text-xs uppercase tracking-widest hover:bg-white/5 text-white/70 hover:text-gold transition-colors">
 											Сначала дороже
 										</button>
 									</motion.div>

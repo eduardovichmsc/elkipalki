@@ -1,18 +1,34 @@
 "use client";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
-import { PATHS } from "@/config/paths";
+import { NAVLINKS, PATHS } from "@/config/paths";
 import TransitionLink from "@/components/ui/link";
 import { useLenis } from "@/components/layout/scroll";
+import { BASE } from "@/config";
 
 export default function Footer() {
 	const lenis = useLenis();
+
+	const handleScroll = (
+		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+		href: string
+	) => {
+		if (href.includes("#")) {
+			const targetId = href.split("#")[1];
+			const elem = document.getElementById(targetId);
+
+			if (elem) {
+				e.preventDefault();
+				lenis?.scrollTo(elem, { offset: -100, duration: 2 });
+			}
+		}
+	};
 
 	const scrollToTop = () => {
 		lenis?.scrollTo(0, { duration: 2 });
 	};
 
 	return (
-		<footer className="bg-[#05140e] text-cream relative overflow-hidden">
+		<footer className="sticky bottom-0 z-0 bg-[#05140e] text-cream overflow-hidden">
 			{/* 1. Big CTA Section */}
 			<div className="px-6 md:px-12 pt-24 pb-12 md:pt-32 border-t border-white/10">
 				<div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
@@ -27,7 +43,7 @@ export default function Footer() {
 						<a
 							href={PATHS.CONTACTS.EMAIL}
 							className="inline-flex items-center gap-4 text-xl md:text-2xl border-b border-white/20 pb-2 hover:border-gold hover:text-gold transition-colors duration-300">
-							hello@noel-store.ru
+							{BASE.email.text}
 							<ArrowUpRight className="w-6 h-6" />
 						</a>
 					</div>
@@ -61,14 +77,11 @@ export default function Footer() {
 							Меню
 						</span>
 						<nav className="flex flex-col gap-4 items-start">
-							{[
-								{ name: "Каталог", href: PATHS.CATALOG },
-								{ name: "Коллекции", href: PATHS.SECTIONS.COLLECTIONS },
-								{ name: "О бренде", href: PATHS.SECTIONS.ABOUT },
-							].map((link) => (
+							{NAVLINKS.map((link) => (
 								<TransitionLink
 									key={link.name}
 									href={link.href}
+									onClick={(e) => handleScroll(e, link.href)}
 									className="text-lg font-serif hover:text-gold hover:translate-x-2 transition-all duration-300">
 									{link.name}
 								</TransitionLink>
@@ -147,7 +160,7 @@ export default function Footer() {
 			{/* 3. Massive Typography (The "Awwwards" Signature) */}
 			<div className="border-t border-white/10 pt-4 md:pt-0 overflow-hidden">
 				<h1 className="text-[24vw] leading-[0.8] font-serif text-center text-white/5 select-none pointer-events-none translate-y-4 md:translate-y-8">
-					NOËL
+					{BASE.logo.text}
 				</h1>
 			</div>
 

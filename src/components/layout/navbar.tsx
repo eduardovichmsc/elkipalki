@@ -9,18 +9,13 @@ import {
 	ArrowUpRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PATHS } from "@/config/paths";
+import { NAVLINKS, PATHS } from "@/config";
 import { useLenis } from "@/components/layout/scroll";
 import { useMounted } from "@/hooks/useMounted";
 import { useFavoritesStore } from "@/store/favorites";
 import { useCartStore } from "@/store/cart";
 import TransitionLink from "../ui/link";
-
-const navLinks = [
-	{ name: "Коллекция", href: PATHS.CATALOG },
-	{ name: "О бренде", href: PATHS.SECTIONS.ABOUT },
-	{ name: "Доставка", href: PATHS.SECTIONS.DELIVERY },
-];
+import { BASE } from "@/config";
 
 const menuVars = {
 	initial: { opacity: 0 },
@@ -94,14 +89,15 @@ export default function Navbar() {
 				className="fixed top-6 left-0 right-0 z-50 flex justify-center items-center px-4">
 				<div className="relative flex items-center justify-between px-2 py-2 bg-forest/60 backdrop-blur-md border border-white/10 rounded-full shadow-2xl shadow-black/20 min-w-full md:min-w-[500px]">
 					<TransitionLink
-						href="/"
+						href={PATHS.HOME}
+						onClick={(e) => handleScroll(e, PATHS.HOME)}
 						className="pl-6 pr-4 font-serif text-xl tracking-widest text-cream">
-						NOËL
+						{BASE.logo.text}
 					</TransitionLink>
 
 					{/* Desktop Menu */}
 					<nav className="hidden md:flex items-center gap-2 bg-black/20 rounded-full px-2 py-1.5 border border-white/5">
-						{navLinks.map((link, index) => (
+						{NAVLINKS.map((link, index) => (
 							<TransitionLink
 								key={link.name}
 								href={link.href}
@@ -183,7 +179,7 @@ export default function Navbar() {
 								animate="open"
 								exit="initial"
 								className="flex flex-col gap-4">
-								{navLinks.map((link, i) => (
+								{NAVLINKS.map((link, i) => (
 									<div key={link.name} className="overflow-hidden">
 										<motion.div variants={mobileLinkVars}>
 											<TransitionLink

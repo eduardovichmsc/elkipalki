@@ -34,7 +34,7 @@ export default function PageTransitionOverlay() {
 					Noël
 				</h2>
 				<p className="text-white/30 text-xs uppercase tracking-[0.4em] mt-4">
-					Loading Magic...
+					Loading Magic
 				</p>
 			</motion.div>
 		</motion.div>

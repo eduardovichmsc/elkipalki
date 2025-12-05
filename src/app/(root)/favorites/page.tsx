@@ -16,7 +16,7 @@ export default function FavoritesPage() {
 
 	return (
 		<main className="min-h-screen bg-forest">
-			<section className="pt-32 pb-24 px-6 md:px-24">
+			<section className="pt-32 pb-24 px-6 md:px-12">
 				<div className="border-b border-white/10 pb-8 mb-16">
 					<h1 className="text-5xl md:text-8xl font-serif text-cream mb-4">
 						Избранное
