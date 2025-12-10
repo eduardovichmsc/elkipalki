@@ -10,6 +10,7 @@ import ProductCard from "@/components/catalog/card";
 import FavoriteButton from "@/components/ui/favorite_button";
 import { useCartStore } from "@/store/cart";
 import TransitionLink from "@/components/ui/link";
+import { BASE } from "@/config";
 
 interface ProductPageClientProps {
 	product: Product;
@@ -101,7 +102,8 @@ export default function ProductPageClient({
 
 							<div className="flex items-end justify-between">
 								<div className="text-3xl font-sans text-cream">
-									{new Intl.NumberFormat("ru-RU").format(selectedSize.price)} ₽
+									{new Intl.NumberFormat("ru-RU").format(selectedSize.price)}{" "}
+									{BASE.currency}
 								</div>
 								{/* <div className="flex items-center gap-1 text-gold text-sm">
 									<Star size={14} fill="currentColor" />

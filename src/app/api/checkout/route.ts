@@ -5,11 +5,10 @@ export async function POST(req: Request) {
 		const body = await req.json();
 		const { contact, items, total } = body;
 
-		// Формируем красивое сообщение (HTML разметка)
 		const itemsList = items
 			.map(
 				(i: any, index: number) =>
-					`${index + 1}. <b>${i.name}</b>\n   Размер: ${i.selectedSize.height}\n   Цена: ${i.selectedSize.price} ₽ x ${i.quantity} шт.`
+					`${index + 1}. <b>${i.name}</b>\n   Размер: ${i.selectedSize.height}\n   Цена: ${i.selectedSize.price} ₸ x ${i.quantity} шт.`
 			)
 			.join("\n\n");
 
@@ -26,7 +25,6 @@ ${itemsList}
 💰 <b>Итого:</b> ${new Intl.NumberFormat("ru-RU").format(total)} ₽
     `;
 
-		// Отправляем в Telegram
 		const token = process.env.TELEGRAM_BOT_TOKEN;
 		const chatId = process.env.TELEGRAM_CHAT_ID;
 		const url = `https://api.telegram.org/bot${token}/sendMessage`;

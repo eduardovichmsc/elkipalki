@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Plus, Minus, Trash2, ArrowRight, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useCartStore } from "@/store/cart";
-import { useMounted } from "@/hooks/useMounted"; // Убедитесь, что путь правильный (use-mounted или useMounted)
+import { useMounted } from "@/hooks/useMounted";
+import { BASE } from "@/config";
 
 export default function CartDrawer() {
 	const {
@@ -212,7 +213,7 @@ export default function CartDrawer() {
 														{new Intl.NumberFormat("ru-RU").format(
 															item.selectedSize.price * item.quantity
 														)}{" "}
-														₽
+														{BASE.currency}
 													</span>
 												</div>
 											</div>
@@ -230,7 +231,8 @@ export default function CartDrawer() {
 										Итого:
 									</span>
 									<span className="text-2xl font-serif text-cream">
-										{new Intl.NumberFormat("ru-RU").format(totalPrice())} ₽
+										{new Intl.NumberFormat("ru-RU").format(totalPrice())}{" "}
+										{BASE.currency}
 									</span>
 								</div>
 

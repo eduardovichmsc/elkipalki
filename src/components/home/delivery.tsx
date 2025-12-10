@@ -136,16 +136,10 @@ export default function Delivery() {
 								Доставка день в день
 							</h3>
 							<p className="text-white/50 text-sm">
-								При заказе до 14:00 по Москве и МО (до 15км от МКАД).
+								Доставка работает только в городе Алматы
 							</p>
 						</div>
 					</div>
-
-					<Link
-						href={PATHS.SECTIONS.DELIVERY}
-						className="relative z-10 flex items-center gap-2 bg-gold/10 text-gold px-6 py-3 rounded-full text-xs uppercase tracking-widest hover:bg-gold hover:text-forest transition-colors whitespace-nowrap">
-						Зоны доставки <ArrowRight size={14} />
-					</Link>
 				</motion.div>
 			</div>
 		</section>

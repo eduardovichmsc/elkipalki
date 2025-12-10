@@ -28,7 +28,7 @@ export default function Footer() {
 	};
 
 	return (
-		<footer className="sticky bottom-0 z-0 bg-[#05140e] text-cream overflow-hidden">
+		<footer className="relative md:sticky bottom-0 z-0 bg-[#05140e] text-cream overflow-hidden">
 			{/* 1. Big CTA Section */}
 			<div className="px-6 md:px-12 pt-24 pb-12 md:pt-32 border-t border-white/10">
 				<div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">

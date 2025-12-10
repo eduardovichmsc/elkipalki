@@ -5,4 +5,5 @@ export const BASE = {
 	email: {
 		text: "hello@noel-store.ru",
 	},
+	currency: "₸",
 };

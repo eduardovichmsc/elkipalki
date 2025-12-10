@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useTransition } from "@/context/transition";
+import { useEffect } from "react";
 
 const slideUp = {
 	initial: { y: "115vh" },

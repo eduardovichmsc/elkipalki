@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { PATHS } from "@/config/paths";
 import FavoriteButton from "@/components/ui/favorite_button";
 import TransitionLink from "../ui/link";
+import { BASE } from "@/config";
 
 interface ProductCardProps {
 	product: Product;
@@ -102,7 +103,8 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 						<div className="text-right">
 							{product.startPrice ? (
 								<span className="text-cream font-sans text-lg block">
-									{new Intl.NumberFormat("ru-RU").format(product.startPrice)} ₽
+									{new Intl.NumberFormat("ru-RU").format(product.startPrice)}{" "}
+									{BASE.currency}
 								</span>
 							) : (
 								<span className="text-white/50 font-sans text-sm block">

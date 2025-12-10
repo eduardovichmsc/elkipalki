@@ -1,5 +1,12 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+	createContext,
+	useContext,
+	useState,
+	ReactNode,
+	useEffect,
+	useLayoutEffect,
+} from "react";
 
 type TransitionContextType = {
 	timeline: string; // 'initial' | 'entering' | 'exiting'

@@ -11,7 +11,7 @@ export const PATHS = {
 	CONTACTS: {
 		INSTAGRAM: "https://instagram.com",
 		TELEGRAM: "https://t.me",
-		PHONE: "tel:+79990000000",
+		PHONE: "tel:+77075419884",
 		EMAIL: "mailto:hello@noel-store.ru",
 	},
 } as const;
