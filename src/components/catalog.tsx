@@ -21,7 +21,7 @@ export default function Catalog({ products }: Props) {
 						Коллекция 2024
 					</h2>
 					<p className="text-white/40 mt-2 text-sm max-w-md">
-						Тщательно отобранные деревья из лучших питомников Европы.
+						С прекрасным материалом.
 					</p>
 				</div>
 

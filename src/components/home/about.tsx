@@ -8,7 +8,7 @@ export default function About() {
 					О нас
 				</p>
 				<h2 className="text-4xl md:text-7xl font-serif leading-[1.1] mb-12">
-					Мы не просто продаем елки. Мы доставляем дух Рождества прямо в вашу
+					Мы не просто продаем елки. Мы доставляем Новогоднее настроение в вашу
 					гостиную.
 				</h2>
 				<div className="flex items-center gap-4 cursor-pointer group">

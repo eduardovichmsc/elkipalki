@@ -28,7 +28,7 @@ export default function Footer() {
 	};
 
 	return (
-		<footer className="relative md:sticky bottom-0 z-0 bg-[#05140e] text-cream overflow-hidden">
+		<footer className="relative md:h-screen bottom-0 z-0 bg-[#05140e] text-cream overflow-hidden">
 			{/* 1. Big CTA Section */}
 			<div className="px-6 md:px-12 pt-24 pb-12 md:pt-32 border-t border-white/10">
 				<div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
@@ -38,7 +38,9 @@ export default function Footer() {
 						</span>
 						<h2 className="text-4xl md:text-7xl font-serif leading-[1.1] mb-8">
 							Готовы наполнить дом <br />
-							<span className="italic text-white/30">магией Рождества?</span>
+							<span className="italic text-white/30">
+								настроением Нового Года?
+							</span>
 						</h2>
 						<a
 							href={PATHS.CONTACTS.EMAIL}

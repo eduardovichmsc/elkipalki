@@ -54,7 +54,7 @@ export default function Delivery() {
 						<h3 className="text-2xl font-serif text-cream mb-2">
 							Бережная доставка
 						</h3>
-						<p className="text-white/70 text-sm max-w-md">
+						<p className="text-white/70 text-sm max-w-md hidden">
 							Перевозим ели в климатических камерах при +2°C. Курьеры работают в
 							бахилах и белых перчатках, чтобы не оставить и следа в вашем доме.
 						</p>
@@ -67,7 +67,7 @@ export default function Delivery() {
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.6, delay: 0.1 }}
-					className="bg-[#133326] rounded-3xl p-8 flex flex-col justify-between border border-white/5 group hover:border-gold/30 transition-colors min-h-[200px]">
+					className="md:col-span-2 bg-[#133326] wf rounded-3xl p-8 flex flex-col justify-between border border-white/5 group hover:border-gold/30 transition-colors min-h-[200px]">
 					<div className="flex justify-between items-start">
 						<Ruler className="text-gold" size={24} />
 						<span className="text-white/20 text-xs font-mono">01</span>
@@ -75,8 +75,7 @@ export default function Delivery() {
 					<div>
 						<h3 className="text-xl font-serif text-cream mb-2">Монтаж</h3>
 						<p className="text-white/50 text-xs leading-relaxed">
-							Выровняем ствол по лазерному уровню, надежно закрепим в подставке
-							и подрежем нижние ветки при необходимости.
+							Качественно установим. Вам лишь остается радоваться новой покупке.
 						</p>
 					</div>
 				</motion.div>
@@ -87,7 +86,7 @@ export default function Delivery() {
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.6, delay: 0.2 }}
-					className="bg-cream rounded-3xl p-8 flex flex-col justify-between group min-h-[200px]">
+					className="bg-cream rounded-3xl p-8 hidden flex-col justify-between group min-h-[200px]">
 					<div className="flex justify-between items-start">
 						<Recycle className="text-forest" size={24} />
 						<span className="text-forest/30 text-xs font-mono">02</span>
