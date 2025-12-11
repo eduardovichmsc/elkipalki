@@ -5,6 +5,12 @@ import { ArrowUpRight } from "lucide-react";
 import { PATHS } from "@/config/paths";
 
 export default function PromoCard() {
+	const handleWhatsApp = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		let message = `Здравствуйте! Хочу взять консультацию.`;
+		const url = `https://wa.me/${PATHS.CONTACTS.WHATSAPP}?text=${encodeURIComponent(message)}`;
+		window.open(url, "_blank");
+	};
+
 	return (
 		<motion.div
 			layout
@@ -31,7 +37,8 @@ export default function PromoCard() {
 
 			<div className="relative z-10">
 				<Link
-					href={PATHS.CONTACTS.TELEGRAM}
+					href={PATHS.CONTACTS.WHATSAPP.title}
+					onClick={(e) => handleWhatsApp(e)}
 					target="_blank"
 					className="flex items-center gap-4 text-forest font-bold uppercase tracking-widest text-xs">
 					Написать стилисту <ArrowUpRight size={18} />

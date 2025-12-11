@@ -43,9 +43,9 @@ export default function Footer() {
 							</span>
 						</h2>
 						<a
-							href={PATHS.CONTACTS.EMAIL}
+							href={PATHS.CONTACTS.INSTAGRAM.href}
 							className="inline-flex items-center gap-4 text-xl md:text-2xl border-b border-white/20 pb-2 hover:border-gold hover:text-gold transition-colors duration-300">
-							{BASE.email.text}
+							{PATHS.CONTACTS.INSTAGRAM.title}
 							<ArrowUpRight className="w-6 h-6" />
 						</a>
 					</div>
@@ -121,23 +121,14 @@ export default function Footer() {
 							Соцсети
 						</span>
 						<nav className="flex flex-col gap-4 items-start">
-							<a
-								href={PATHS.CONTACTS.INSTAGRAM}
-								target="_blank"
-								className="text-sm uppercase tracking-widest hover:text-gold transition-colors">
-								Instagram
-							</a>
-							<a
-								href={PATHS.CONTACTS.TELEGRAM}
-								target="_blank"
-								className="text-sm uppercase tracking-widest hover:text-gold transition-colors">
-								Telegram
-							</a>
-							<a
-								href="#"
-								className="text-sm uppercase tracking-widest hover:text-gold transition-colors">
-								Pinterest
-							</a>
+							{BASE.socials.map((social) => (
+								<a
+									href={social.item.href}
+									target="_blank"
+									className="text-sm uppercase tracking-widest hover:text-gold transition-colors">
+									{social.label}
+								</a>
+							))}
 						</nav>
 					</div>
 

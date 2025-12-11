@@ -2,11 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { inter, playfair } from "@/config/fonts";
 
-export const metadata: Metadata = {
-	title: "NOËL | Premium Christmas Trees",
-	description: "Exquisite Christmas trees delivered to your door.",
-};
-
 export default function RootLayout({
 	children,
 }: Readonly<{

@@ -19,6 +19,7 @@ const steps = [
 		num: "03",
 		title: "Установка и Сервис",
 		desc: "Наш курьер в белых перчатках не просто привезет елку. Он установит её в подставку, выровняет по уровню и уберет за собой все упаковочные материалы.",
+		additional: "Дополнительная опция: Цена 15 000 ₸",
 	},
 ];
 
@@ -81,6 +82,11 @@ export default function Process() {
 									<p className="text-forest/70 leading-relaxed text-lg font-sans max-w-md">
 										{step.desc}
 									</p>
+									{step.additional && (
+										<p className="text-forest/70 leading-relaxed text-lg font-sans max-w-md">
+											{step.additional}
+										</p>
+									)}
 								</motion.div>
 							</div>
 						))}

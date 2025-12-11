@@ -51,7 +51,7 @@ export default function Hero() {
 						}}
 						// Увеличили размер на мобилках до 17vw
 						className="text-[17vw] md:text-[12vw] leading-[0.9] font-serif text-cream mix-blend-overlay tracking-tight">
-						Christmas
+						New Year
 					</motion.h1>
 				</div>
 				<div className="overflow-hidden w-full -mt-2 md:-mt-6">
@@ -63,7 +63,6 @@ export default function Hero() {
 							ease: [0.76, 0, 0.24, 1],
 							delay: 0.3 + 0.5,
 						}}
-						// Увеличили размер и добавили padding-right для динамики
 						className="text-[17vw] md:text-[12vw] leading-[0.9] font-serif text-gold italic tracking-tighter pr-4 md:pr-0">
 						Magic
 					</motion.h1>
@@ -74,8 +73,8 @@ export default function Hero() {
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ delay: 0.3 + 0.5, duration: 0.8 }}
-					className="mt-8 text-xs md:text-lg uppercase tracking-[0.3em] font-light max-w-[280px] md:max-w-md mx-auto text-cream/80">
-					Премиальные живые ели из датских питомников
+					className="mt-8 text-xs md:text-lg uppercase tracking-[0.3em] font-light max-w-[280px] md:max-w-xl mx-auto text-cream/80">
+					Премиальные искусственные ёлки
 				</motion.p>
 			</div>
 

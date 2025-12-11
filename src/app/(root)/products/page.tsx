@@ -4,6 +4,18 @@ import CatalogClient from "@/app/(root)/products/client";
 
 export const dynamic = "force-dynamic";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Каталог Елей",
+	keywords: [
+		"каталог елок",
+		"цены на елки",
+		"пихта фразера купить",
+		"ель в горшке",
+	],
+};
+
 export default async function CatalogPage() {
 	const [products, categories] = await Promise.all([
 		client.fetch(PRODUCTS_QUERY, {}, { next: { revalidate: 60 } }),

@@ -148,12 +148,6 @@ export default function ProductPageClient({
 																		}
                                 `}>
 										{size.height}
-										{selectedSize.id === size.id && (
-											<motion.div
-												layoutId="active-size"
-												className="absolute inset-0 border border-gold shadow-[0_0_15px_rgba(212,175,55,0.2)]"
-											/>
-										)}
 									</button>
 								))}
 							</div>

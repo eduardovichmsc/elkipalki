@@ -92,18 +92,18 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 				<div className="flex flex-col grow">
 					<div className="flex justify-between items-start mb-2">
 						<div>
-							<span className="text-white/40 text-xs font-serif italic mb-1 block">
+							<span className="text-white/40 text-xs font-serif italic mb-1 block line-clamp-1">
 								{product.latinName}
 							</span>
-							<h3 className="text-xl md:text-2xl font-serif text-cream group-hover:text-gold transition-colors duration-300">
+							<h3 className="text-xl md:text-2xl font-serif text-cream group-hover:text-gold transition-colors duration-300 line-clamp-2">
 								{product.name}
 							</h3>
 						</div>
 
-						<div className="text-right">
+						<div className="shrink-0 text-right">
 							{product.startPrice ? (
 								<span className="text-cream font-sans text-lg block">
-									{new Intl.NumberFormat("ru-RU").format(product.startPrice)}{" "}
+									от {new Intl.NumberFormat("ru-RU").format(product.startPrice)}{" "}
 									{BASE.currency}
 								</span>
 							) : (
