@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useTransition } from "@/context/transition";
 import { useEffect } from "react";
+import { BASE } from "@/config";
 
 const slideUp = {
 	initial: { y: "115vh" },
@@ -32,7 +33,7 @@ export default function PageTransitionOverlay() {
 			animate={timeline}>
 			<motion.div variants={opacityText} className="text-center">
 				<h2 className="text-5xl md:text-7xl font-serif text-gold italic">
-					Noël
+					{BASE.logo.text}
 				</h2>
 				<p className="text-white/30 text-xs uppercase tracking-[0.4em] mt-4">
 					Loading Magic
