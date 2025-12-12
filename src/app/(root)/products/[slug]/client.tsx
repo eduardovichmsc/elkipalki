@@ -73,7 +73,7 @@ export default function ProductPageClient({
 						{/* UPDATED: bg-forest/5 text-forest */}
 						<div className="relative aspect-square bg-forest/5 flex items-center justify-center p-8 text-center">
 							{/* UPDATED: text-forest/20 */}
-							<p className="text-forest/20 font-serif italic text-xl">
+							<p className="text-forest font-serif italic text-xl">
 								"Every tree has a soul meant to light up your home."
 							</p>
 						</div>
