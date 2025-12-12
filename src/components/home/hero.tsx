@@ -20,7 +20,7 @@ export default function Hero() {
 		<section
 			id="home"
 			ref={containerRef}
-			className="relative h-[100dvh] w-full overflow-hidden flex flex-col items-center justify-center">
+			className="relative h-[100dvh] w-full overflow-hidden flex flex-col items-center justify-center bg-neutral-950">
 			{/* Background Parallax */}
 			<motion.div style={{ y }} className="absolute inset-0 z-0">
 				<Image
@@ -63,7 +63,7 @@ export default function Hero() {
 							ease: [0.76, 0, 0.24, 1],
 							delay: 0.3 + 0.5,
 						}}
-						className="text-[17vw] md:text-[12vw] leading-[0.9] font-serif text-gold italic tracking-tighter pr-4 md:pr-0">
+						className="text-[17vw] md:text-[12vw] leading-[0.9] font-serif text-cream italic tracking-tighter pr-4 md:pr-0">
 						Magic
 					</motion.h1>
 				</div>

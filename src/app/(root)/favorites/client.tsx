@@ -12,16 +12,18 @@ export default function FavoritesClient() {
 
 	if (!isMounted) return null;
 
-	console.log(items);
-
 	return (
-		<main className="min-h-screen bg-forest">
+		// UPDATED: bg-cream
+		<main className="min-h-screen bg-cream">
 			<section className="pt-32 pb-24 px-6 md:px-12">
-				<div className="border-b border-white/10 pb-8 mb-16">
-					<h1 className="text-5xl md:text-8xl font-serif text-cream mb-4">
+				{/* UPDATED: border-forest/10 */}
+				<div className="border-b border-forest/10 pb-8 mb-16">
+					{/* UPDATED: text-forest */}
+					<h1 className="text-5xl md:text-8xl font-serif text-forest mb-4">
 						Избранное
 					</h1>
-					<p className="text-white/50">
+					{/* UPDATED: text-forest/50 */}
+					<p className="text-forest/50">
 						Ваш личный список желаний. {items.length} товаров сохранено.
 					</p>
 				</div>
@@ -38,18 +40,22 @@ export default function FavoritesClient() {
 					<motion.div
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
-						className="flex flex-col items-center justify-center py-24 text-center border border-dashed border-white/10 rounded-3xl">
+						// UPDATED: border-forest/10
+						className="flex flex-col items-center justify-center py-24 text-center border border-dashed border-forest/10 rounded-3xl">
 						<div className="text-6xl mb-6">🎄</div>
-						<h2 className="text-3xl font-serif text-cream mb-4">
+						{/* UPDATED: text-forest */}
+						<h2 className="text-3xl font-serif text-forest mb-4">
 							Список пока пуст
 						</h2>
-						<p className="text-white/50 max-w-md mb-8">
+						{/* UPDATED: text-forest/50 */}
+						<p className="text-forest/50 max-w-md mb-8">
 							Вы еще не добавили ни одной елки в избранное. Перейдите в каталог,
 							чтобы найти ту самую.
 						</p>
 						<Link
 							href={PATHS.CATALOG}
-							className="bg-cream text-forest px-8 py-3 rounded-full text-xs uppercase tracking-widest font-bold hover:bg-gold transition-colors">
+							// UPDATED: bg-forest text-cream hover:bg-gold hover:text-forest
+							className="bg-forest text-cream px-8 py-3 rounded-full text-xs uppercase tracking-widest font-bold hover:bg-gold hover:text-forest transition-colors">
 							Перейти в каталог
 						</Link>
 					</motion.div>

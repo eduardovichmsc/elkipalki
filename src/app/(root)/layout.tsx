@@ -8,7 +8,7 @@ import { TransitionProvider } from "@/context/transition";
 import { Metadata, Viewport } from "next";
 
 export const viewport: Viewport = {
-	themeColor: "#0B2319",
+	themeColor: "#F4F1EA",
 	width: "device-width",
 	initialScale: 1,
 	maximumScale: 1,
@@ -53,14 +53,24 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<TransitionProvider>
-			<SmoothScroll>
-				<PageTransitionOverlay />
-				<CartDrawer />
-				<Navbar />
-				<main className="relative z-10 bg-neutral-950">{children}</main>
-				<Footer />
-			</SmoothScroll>
-		</TransitionProvider>
+		<html lang="ru">
+			{/* Добавляем bg-cream и text-forest глобально на body */}
+			<body className="bg-cream text-forest antialiased selection:bg-gold selection:text-forest">
+				<TransitionProvider>
+					<SmoothScroll>
+						<PageTransitionOverlay />
+						<CartDrawer />
+						<Navbar />
+
+						{/* Main контент тоже делаем кремовым */}
+						<main className="relative z-10 bg-cream min-h-screen">
+							{children}
+						</main>
+
+						<Footer />
+					</SmoothScroll>
+				</TransitionProvider>
+			</body>
+		</html>
 	);
 }

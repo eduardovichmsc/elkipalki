@@ -32,7 +32,10 @@ export default function FavoriteButton({
 			}}
 			className={cn(
 				"flex items-center justify-center transition-colors duration-300 z-20",
-				isFavorite ? "text-gold" : "text-white/40 hover:text-gold",
+				// UPDATED:
+				// Если лайкнуто: Золотой (text-gold)
+				// Если нет: Темно-зеленый прозрачный (text-forest/40) -> при наведении Золотой
+				isFavorite ? "text-forest" : "text-forest/40 hover:text-forest",
 				className
 			)}>
 			<Heart

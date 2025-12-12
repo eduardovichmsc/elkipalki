@@ -23,7 +23,7 @@ export default async function CatalogPage() {
 	]);
 
 	return (
-		<main className="min-h-screen bg-forest">
+		<main className="min-h-screen bg-cream">
 			<CatalogClient products={products} categories={categories} />
 		</main>
 	);

@@ -10,6 +10,22 @@
 	--color-foreground: var(--foreground);
 	--font-sans: var(--font-geist-sans);
 	--font-mono: var(--font-geist-mono);
+	--forest:    
+;
+}
+
+@theme {
+	/* Твои цвета */
+	--color-forest: #0b2319;
+	--color-cream: #f4f1ea;
+	--color-gold: #d4af37;
+
+	/* Шрифты (если ты используешь next/font) */
+	--font-serif: var(--font-playfair), serif;
+	--font-sans: var(--font-inter), sans-serif;
+
+	/* Анимации (если нужно сохранить те, что были в конфиге v3) */
+	/* Например, если были кастомные keyframes, их тоже пишут сюда */
 }
 
 @media (prefers-color-scheme: dark) {

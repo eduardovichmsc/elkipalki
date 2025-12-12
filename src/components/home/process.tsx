@@ -18,7 +18,7 @@ const steps = [
 	{
 		num: "03",
 		title: "Установка и Сервис",
-		desc: "Наш курьер в белых перчатках не просто привезет елку. Он установит её в подставку, выровняет по уровню и уберет за собой все упаковочные материалы.",
+		desc: "Наш курьер не просто привезет елку. Он установит её в подставку, выровняет по уровню и уберет за собой все упаковочные материалы.",
 		additional: "Дополнительная опция: Цена 15 000 ₸",
 	},
 ];
@@ -73,7 +73,7 @@ export default function Process() {
 									transition={{ duration: 0.8, ease: "easeOut" }}
 									viewport={{ once: true, margin: "-10%" }}
 									className="bg-cream/90 backdrop-blur-md md:bg-transparent md:backdrop-blur-none p-8 md:p-0 rounded-2xl md:rounded-none shadow-xl md:shadow-none border border-forest/5 md:border-none">
-									<span className="text-gold font-serif text-6xl md:text-8xl opacity-30 mb-4 block select-none">
+									<span className="text-forest font-serif text-6xl md:text-8xl opacity-30 mb-4 block select-none">
 										{step.num}
 									</span>
 									<h3 className="text-3xl md:text-5xl font-serif mb-6 text-forest leading-tight">

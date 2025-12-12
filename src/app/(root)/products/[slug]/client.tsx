@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowLeft, Star, Truck, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Star, ShieldCheck } from "lucide-react";
 import { Product } from "@/types/product";
 import { PATHS } from "@/config/paths";
 import Accordion from "@/components/accordion";
@@ -30,7 +30,8 @@ export default function ProductPageClient({
 			<div className="mb-8">
 				<TransitionLink
 					href={PATHS.CATALOG}
-					className="inline-flex items-center gap-2 text-white/40 hover:text-gold transition-colors text-xs uppercase tracking-widest">
+					// UPDATED: text-forest/40 hover:text-gold
+					className="inline-flex items-center gap-2 text-forest/40 hover:text-gold transition-colors text-xs uppercase tracking-widest">
 					<ArrowLeft size={14} /> Back to Catalog
 				</TransitionLink>
 			</div>
@@ -43,9 +44,10 @@ export default function ProductPageClient({
 					transition={{ duration: 0.8 }}
 					className="lg:w-[60%] space-y-4">
 					{/* Main Image */}
-					<div className="relative aspect-4/5 w-full overflow-hidden rounded-sm bg-pine/30">
+					{/* UPDATED: bg-forest/5 */}
+					<div className="relative aspect-4/5 w-full overflow-hidden rounded-sm bg-forest/5">
 						<Image
-							src={product.images?.main || "/placeholder.jpg"} // Заглушка на всякий случай
+							src={product.images?.main || "/placeholder.jpg"}
 							alt={product.name}
 							fill
 							className="object-cover"
@@ -57,7 +59,8 @@ export default function ProductPageClient({
 					{/* Grid of details */}
 					<div className="grid grid-cols-2 gap-4">
 						{product.images.hover && (
-							<div className="relative aspect-square overflow-hidden rounded-sm bg-pine/30">
+							// UPDATED: bg-forest/5
+							<div className="relative aspect-square overflow-hidden rounded-sm bg-forest/5">
 								<Image
 									src={product.images.hover}
 									alt="Detail"
@@ -67,8 +70,10 @@ export default function ProductPageClient({
 							</div>
 						)}
 						{/* Placeholder for gallery if empty */}
-						<div className="relative aspect-square bg-[#133326] flex items-center justify-center p-8 text-center">
-							<p className="text-white/20 font-serif italic text-xl">
+						{/* UPDATED: bg-forest/5 text-forest */}
+						<div className="relative aspect-square bg-forest/5 flex items-center justify-center p-8 text-center">
+							{/* UPDATED: text-forest/20 */}
+							<p className="text-forest/20 font-serif italic text-xl">
 								"Every tree has a soul meant to light up your home."
 							</p>
 						</div>
@@ -83,49 +88,47 @@ export default function ProductPageClient({
 						transition={{ duration: 0.8, delay: 0.2 }}
 						className="sticky top-32">
 						{/* Header */}
-						<div className="mb-8 border-b border-white/10 pb-8">
+						{/* UPDATED: border-forest/10 */}
+						<div className="mb-8 border-b border-forest/10 pb-8">
 							<div className="flex items-center gap-2 mb-2">
-								<span className="text-gold text-xs font-bold uppercase tracking-widest">
+								{/* UPDATED: text-forest */}
+								<span className="text-forest text-xs font-bold uppercase tracking-widest">
 									{product.tags?.includes("bestseller")
 										? "Bestseller"
 										: "Premium Collection"}
 								</span>
-								<div className="h-px w-8 bg-gold/30"></div>
-								<span className="text-white/40 font-serif italic">
+								{/* UPDATED: bg-forest/30 */}
+								<div className="h-px w-8 bg-forest/30"></div>
+								{/* UPDATED: text-forest/40 */}
+								<span className="text-forest/40 font-serif italic">
 									{product.latinName}
 								</span>
 							</div>
 
-							<h1 className="text-5xl md:text-7xl font-serif text-cream mb-4 leading-[0.9]">
+							{/* UPDATED: text-forest */}
+							<h1 className="text-5xl md:text-7xl font-serif text-forest mb-4 leading-[0.9]">
 								{product.name}
 							</h1>
 
 							<div className="flex items-end justify-between">
-								<div className="text-3xl font-sans text-cream">
+								{/* UPDATED: text-forest */}
+								<div className="text-3xl font-sans text-forest">
 									{new Intl.NumberFormat("ru-RU").format(selectedSize.price)}{" "}
 									{BASE.currency}
 								</div>
-								{/* <div className="flex items-center gap-1 text-gold text-sm">
-									<Star size={14} fill="currentColor" />
-									<Star size={14} fill="currentColor" />
-									<Star size={14} fill="currentColor" />
-									<Star size={14} fill="currentColor" />
-									<Star size={14} fill="currentColor" />
-									<span className="ml-2 text-white/30 text-xs underline decoration-white/20 underline-offset-4">
-										(42 отзыва)
-									</span>
-								</div> */}
 							</div>
 						</div>
 
 						{/* Description */}
-						<p className="text-white/70 font-sans leading-relaxed mb-10">
+						{/* UPDATED: text-forest/70 */}
+						<p className="text-forest/70 font-sans leading-relaxed mb-10">
 							{product.description}
 						</p>
 
 						{/* Size Selector */}
 						<div className="mb-10">
-							<span className="text-white/40 text-xs uppercase tracking-widest mb-4 block">
+							{/* UPDATED: text-forest/40 */}
+							<span className="text-forest/40 text-xs uppercase tracking-widest mb-4 block">
 								Выберите высоту
 							</span>
 							<div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -138,8 +141,10 @@ export default function ProductPageClient({
                                     relative py-3 px-2 border rounded-sm text-sm transition-all duration-300
                                     ${
 																			selectedSize.id === size.id
-																				? "border-gold text-gold bg-gold/5"
-																				: "border-white/5 text-white/60 hover:border-white/30"
+																				? // UPDATED: border-forest text-forest bg-forest/5
+																					"border-forest text-forest bg-forest/5"
+																				: // UPDATED: border-forest/5 text-forest/60 hover:border-forest/30
+																					"border-forest/5 text-forest/60 hover:border-forest/30"
 																		}
                                     ${
 																			!size.available
@@ -163,21 +168,25 @@ export default function ProductPageClient({
 							<button
 								onClick={() => addItem(product, selectedSize)}
 								disabled={!selectedSize.available}
+								// UPDATED:
+								// border-forest/20 text-forest
+								// hover:bg-forest hover:border-forest hover:text-cream
 								className="
-    flex-1 py-4 rounded-full
-    border border-white/20 bg-transparent
-    text-cream text-xs font-bold uppercase tracking-[0.2em]
-    transition-all duration-300
-    hover:bg-gold hover:border-gold hover:text-forest
-    active:scale-95
-    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-cream disabled:hover:border-white/20
-  ">
+                                    flex-1 py-4 rounded-full
+                                    border border-forest/20 bg-transparent
+                                    text-forest text-xs font-bold uppercase tracking-[0.2em]
+                                    transition-all duration-300
+                                    hover:bg-forest hover:border-forest hover:text-cream
+                                    active:scale-95
+                                    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-forest disabled:hover:border-forest/20
+                                ">
 								{selectedSize.available
 									? "Добавить в корзину"
 									: "Нет в наличии"}
 							</button>
 
-							<div className="w-14 h-14 border border-white/20 rounded-full flex items-center justify-center hover:border-gold transition-colors">
+							{/* UPDATED: border-forest/20 hover:border-forest */}
+							<div className="w-14 h-14 border border-forest/20 rounded-full flex items-center justify-center hover:border-forest transition-colors">
 								<FavoriteButton
 									product={product}
 									iconSize={24}
@@ -218,10 +227,8 @@ export default function ProductPageClient({
 							</Accordion>
 							<Accordion title="Доставка и Установка">
 								<div className="flex items-start gap-3">
-									<Truck size={20} className="text-gold mt-1 shrink-0" />
 									<p>
-										Бесплатная доставка по Москве в пределах МКАД. Установка
-										занимает 15 минут. Мы уберем весь мусор после монтажа.
+										Доставка и установка платная, по городу Алматы. Цена 15000₸
 									</p>
 								</div>
 							</Accordion>
@@ -231,14 +238,17 @@ export default function ProductPageClient({
 			</div>
 
 			{/* --- RELATED PRODUCTS --- */}
-			<section className="mt-32 border-t border-white/10 pt-24">
+			{/* UPDATED: border-forest/10 */}
+			<section className="mt-32 border-t border-forest/10 pt-24">
 				<div className="flex justify-between items-end mb-12">
-					<h2 className="text-4xl font-serif text-cream">
+					{/* UPDATED: text-forest */}
+					<h2 className="text-4xl font-serif text-forest">
 						Вам может понравиться
 					</h2>
 					<TransitionLink
 						href={PATHS.CATALOG}
-						className="text-gold underline underline-offset-4 text-xs uppercase tracking-widest">
+						// UPDATED: text-forest
+						className="text-forest underline underline-offset-4 text-xs uppercase tracking-widest">
 						Смотреть все
 					</TransitionLink>
 				</div>
@@ -246,15 +256,19 @@ export default function ProductPageClient({
 					{relatedProducts.map((p, i) => (
 						<ProductCard key={p.id} product={p} index={i} />
 					))}
-					{/* Fake 'Design Service' card to fill space if needed */}
-					<div className="bg-[#133326] flex flex-col items-center justify-center text-center p-8 group cursor-pointer border border-transparent hover:border-white/10 transition-colors">
-						<h3 className="text-2xl font-serif text-gold mb-4 italic">
+					{/* Fake 'Design Service' card */}
+					{/* UPDATED: bg-forest/5 hover:border-forest/10 */}
+					<div className="bg-forest/5 flex flex-col items-center justify-center text-center p-8 group cursor-pointer border border-transparent hover:border-forest/10 transition-colors">
+						{/* UPDATED: text-forest */}
+						<h3 className="text-2xl font-serif text-forest mb-4 italic">
 							Индивидуальный заказ
 						</h3>
-						<p className="text-white/50 text-sm max-w-xs mb-6">
+						{/* UPDATED: text-forest/50 */}
+						<p className="text-forest/50 text-sm max-w-xs mb-6">
 							Нужна елка выше 4 метров или особый сорт? Мы привезем под заказ.
 						</p>
-						<span className="uppercase tracking-widest text-xs border-b border-white/20 pb-1 group-hover:border-gold group-hover:text-gold transition-colors">
+						{/* UPDATED: border-forest/20 hover:border-forest hover:text-forest */}
+						<span className="uppercase tracking-widest text-xs border-b border-forest/20 pb-1 group-hover:border-forest group-hover:text-forest transition-colors">
 							Связаться с менеджером
 						</span>
 					</div>

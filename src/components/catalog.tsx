@@ -13,14 +13,18 @@ export default function Catalog({ products }: Props) {
 	const homepageProducts = products.slice(0, 3);
 
 	return (
-		<section className="py-24 px-6 md:px-12 bg-forest">
+		// UPDATED: bg-cream
+		<section className="py-24 px-6 md:px-12 bg-cream">
 			{/* Заголовок секции */}
-			<div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-cream/10 pb-6 gap-4">
+			{/* UPDATED: border-forest/10 */}
+			<div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-forest/10 pb-6 gap-4">
 				<div>
-					<h2 className="text-4xl md:text-6xl font-serif text-cream">
-						Коллекция 2024
+					{/* UPDATED: text-forest */}
+					<h2 className="text-4xl md:text-6xl font-serif text-forest">
+						Коллекция 2025 - 2026
 					</h2>
-					<p className="text-white/40 mt-2 text-sm max-w-md">
+					{/* UPDATED: text-forest/40 */}
+					<p className="text-forest/40 mt-2 text-sm max-w-md">
 						С прекрасным материалом.
 					</p>
 				</div>
@@ -29,7 +33,8 @@ export default function Catalog({ products }: Props) {
 					{/* Ссылка на полный каталог */}
 					<Link
 						href={PATHS.CATALOG}
-						className="hidden md:block text-gold uppercase tracking-widest text-xs border-b border-transparent hover:border-gold transition-colors">
+						// UPDATED: text-forest hover:border-forest
+						className="hidden md:block text-forest uppercase tracking-widest text-xs border-b border-transparent hover:border-forest transition-colors">
 						Смотреть все
 					</Link>
 				</div>
@@ -58,7 +63,8 @@ export default function Catalog({ products }: Props) {
 			<div className="mt-12 text-center md:hidden">
 				<Link
 					href={PATHS.CATALOG}
-					className="inline-block border border-white/20 px-8 py-3 rounded-full text-cream text-xs uppercase tracking-widest hover:bg-gold hover:text-forest transition-colors">
+					// UPDATED: border-forest/20 text-forest hover:bg-forest hover:text-cream
+					className="inline-block border border-forest/20 px-8 py-3 rounded-full text-forest text-xs uppercase tracking-widest hover:bg-forest hover:text-cream transition-colors">
 					Весь каталог
 				</Link>
 			</div>

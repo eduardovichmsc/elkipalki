@@ -1,30 +1,24 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import {
-	Truck,
-	Ruler,
-	Recycle,
-	MapPin,
-	CalendarClock,
-	ArrowRight,
-} from "lucide-react";
-import Link from "next/link";
-import { PATHS } from "@/config/paths";
+import { Truck, Ruler, Recycle, CalendarClock } from "lucide-react";
 
 export default function Delivery() {
 	return (
 		<section
 			id="delivery"
-			className="py-24 px-6 md:px-12 bg-forest border-t border-white/5">
+			// UPDATED: bg-cream border-forest/10
+			className="py-24 px-6 md:px-12 bg-cream border-t border-forest/10">
 			{/* Header */}
 			<div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
 				<div>
-					<h2 className="text-4xl md:text-6xl font-serif text-cream leading-[1.1]">
+					{/* UPDATED: text-forest */}
+					<h2 className="text-4xl md:text-6xl font-serif text-forest leading-[1.1]">
 						Сервис белых перчаток
 					</h2>
 				</div>
-				<p className="text-white/50 max-w-sm text-sm">
+				{/* UPDATED: text-forest/80 */}
+				<p className="text-forest/80 max-w-sm text-sm">
 					Мы берем на себя все хлопоты. Вам остается только включить гирлянду и
 					налить какао.
 				</p>
@@ -45,12 +39,14 @@ export default function Delivery() {
 						fill
 						className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80"
 					/>
-					<div className="absolute inset-0 from-black/80 via-transparent to-transparent" />
+					{/* Градиент оставляем темным, так как текст поверх фото светлый */}
+					<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
 					<div className="absolute bottom-8 left-8 right-8">
 						<div className="w-12 h-12 rounded-full bg-cream text-forest flex items-center justify-center mb-6">
 							<Truck size={20} />
 						</div>
+						{/* Текст на фото всегда светлый */}
 						<h3 className="text-2xl font-serif text-cream mb-2">
 							Бережная доставка
 						</h3>
@@ -61,32 +57,37 @@ export default function Delivery() {
 					</div>
 				</motion.div>
 
-				{/* Card 2: Installation (Dark) */}
+				{/* Card 2: Installation (Light Theme) */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.6, delay: 0.1 }}
-					className="md:col-span-2 bg-[#133326] wf rounded-3xl p-8 flex flex-col justify-between border border-white/5 group hover:border-gold/30 transition-colors min-h-[200px]">
+					// UPDATED: bg-forest/5 border-forest/10 hover:border-gold/50
+					className="md:col-span-2 bg-forest/5 rounded-3xl p-8 flex flex-col justify-between border border-forest/10 group hover:border-gold/50 transition-colors min-h-[200px]">
 					<div className="flex justify-between items-start">
 						<Ruler className="text-gold" size={24} />
-						<span className="text-white/20 text-xs font-mono">01</span>
+						{/* UPDATED: text-forest/20 */}
+						<span className="text-forest/20 text-xs font-mono">01</span>
 					</div>
 					<div>
-						<h3 className="text-xl font-serif text-cream mb-2">Монтаж</h3>
-						<p className="text-white/50 text-xs leading-relaxed">
+						{/* UPDATED: text-forest */}
+						<h3 className="text-xl font-serif text-forest mb-2">Монтаж</h3>
+						{/* UPDATED: text-forest/50 */}
+						<p className="text-forest/50 text-xs leading-relaxed">
 							Качественно установим. Вам лишь остается радоваться новой покупке.
 						</p>
 					</div>
 				</motion.div>
 
-				{/* Card 3: Recycling (Light/Gold) */}
+				{/* Card 3: Recycling (White Theme) */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.6, delay: 0.2 }}
-					className="bg-cream rounded-3xl p-8 hidden flex-col justify-between group min-h-[200px]">
+					// UPDATED: bg-white (или просто отличный от фона цвет)
+					className="bg-white rounded-3xl p-8 hidden flex-col justify-between group min-h-[200px] border border-forest/5">
 					<div className="flex justify-between items-start">
 						<Recycle className="text-forest" size={24} />
 						<span className="text-forest/30 text-xs font-mono">02</span>
@@ -100,14 +101,17 @@ export default function Delivery() {
 					</div>
 				</motion.div>
 
-				{/* Card 4: Timing (Dark) */}
+				{/* Card 4: Timing (Accent/Green Theme or Light) */}
+				{/* Здесь можно сделать темно-зеленый блок для контраста или светлый. 
+                    Давайте сделаем темно-зеленый (accent), чтобы разбавить "белизну" */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.6, delay: 0.3 }}
-					className="md:col-span-2 bg-[#0F2E22] rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/5 relative overflow-hidden group">
-					{/* Abstract Map Background */}
+					// UPDATED: bg-forest text-cream
+					className="md:col-span-2 bg-forest rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-forest/10 relative overflow-hidden group">
+					{/* Abstract Map Background (Light pattern) */}
 					<div className="absolute inset-0 opacity-10 pointer-events-none">
 						<svg width="100%" height="100%">
 							<pattern
@@ -118,7 +122,7 @@ export default function Delivery() {
 								<path
 									d="M 40 0 L 0 0 0 40"
 									fill="none"
-									stroke="white"
+									stroke="white" // stroke-white так как фон темный
 									strokeWidth="0.5"
 								/>
 							</pattern>
@@ -127,10 +131,12 @@ export default function Delivery() {
 					</div>
 
 					<div className="relative z-10 flex gap-6 items-center w-full">
-						<div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center shrink-0 text-gold">
+						{/* UPDATED: bg-white/10 text-gold */}
+						<div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-gold">
 							<CalendarClock size={28} />
 						</div>
 						<div>
+							{/* UPDATED: text-cream text-white/50 */}
 							<h3 className="text-xl font-serif text-cream mb-1">
 								Доставка день в день
 							</h3>

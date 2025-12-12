@@ -48,7 +48,7 @@ export default async function ProductPage({ params }: PageProps) {
 	}
 
 	return (
-		<main className="min-h-screen bg-forest selection:bg-gold selection:text-forest">
+		<main className="min-h-screen bg-cream selection:bg-gold selection:text-forest">
 			<ProductPageClient product={product} relatedProducts={relatedProducts} />
 		</main>
 	);

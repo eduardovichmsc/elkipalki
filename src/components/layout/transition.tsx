@@ -32,7 +32,7 @@ export default function PageTransitionOverlay() {
 			initial="initial"
 			animate={timeline}>
 			<motion.div variants={opacityText} className="text-center">
-				<h2 className="text-5xl md:text-7xl font-serif text-gold italic">
+				<h2 className="text-5xl md:text-7xl font-serif text-cream italic">
 					{BASE.logo.text}
 				</h2>
 				<p className="text-white/30 text-xs uppercase tracking-[0.4em] mt-4">

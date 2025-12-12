@@ -33,7 +33,7 @@ export default function Footer() {
 			<div className="px-6 md:px-12 pt-24 pb-12 md:pt-32 border-t border-white/10">
 				<div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
 					<div className="max-w-2xl">
-						<span className="text-gold uppercase tracking-[0.2em] text-xs font-bold mb-6 block">
+						<span className="text-cream uppercase tracking-[0.2em] text-xs font-bold mb-6 block">
 							Свяжитесь с нами
 						</span>
 						<h2 className="text-4xl md:text-7xl font-serif leading-[1.1] mb-8">

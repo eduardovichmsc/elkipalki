@@ -26,31 +26,34 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 				href={PATHS.PRODUCT(product.slug)}
 				className="block h-full">
 				{/* --- Image Container --- */}
-				<div className="relative aspect-4/5 overflow-hidden mb-6 bg-pine/30 rounded-sm">
-					{/* Badge: Bestseller / New / Sale */}
+				{/* Меняем фон-заглушку на светлый полупрозрачный зеленый */}
+				<div className="relative aspect-4/5 overflow-hidden mb-6 bg-forest/5 rounded-sm">
+					{/* Badge: Bestseller (Gold) */}
 					{product.tags?.includes("bestseller") && (
 						<div className="absolute top-4 left-4 z-20 bg-gold text-forest text-[10px] font-bold px-3 py-1 uppercase tracking-widest pointer-events-none">
 							Bestseller
 						</div>
 					)}
 
+					{/* Badge: New Season (White instead of Cream for contrast) */}
 					{product.tags?.includes("new") && (
-						<div className="absolute top-4 left-4 z-20 bg-cream text-forest text-[10px] font-bold px-3 py-1 uppercase tracking-widest pointer-events-none">
+						<div className="absolute top-4 left-4 z-20 bg-white text-forest text-[10px] font-bold px-3 py-1 uppercase tracking-widest pointer-events-none shadow-sm">
 							New Season
 						</div>
 					)}
 
+					{/* Badge: Limited (Dark Green) */}
 					{product.tags?.includes("limited") && (
-						<div className="absolute top-4 left-4 z-20 bg-[#1A4231] text-gold border border-gold/30 text-[10px] font-bold px-3 py-1 uppercase tracking-widest pointer-events-none">
+						<div className="absolute top-4 left-4 z-20 bg-[#1A4231] text-forest border border-gold/30 text-[10px] font-bold px-3 py-1 uppercase tracking-widest pointer-events-none">
 							Limited
 						</div>
 					)}
 
-					{/* Кнопка Лайка */}
+					{/* Кнопка Лайка (Оставляем контрастной, так как она на фото) */}
 					<div className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 						<FavoriteButton
 							product={product}
-							className="w-10 h-10 bg-black/20 backdrop-blur-md rounded-full hover:bg-white/10 text-cream hover:text-gold shadow-lg"
+							className="w-10 h-10 bg-black/20 backdrop-blur-md rounded-full hover:bg-white text-cream hover:text-forest shadow-lg"
 						/>
 					</div>
 
@@ -61,7 +64,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 						className="w-full h-full relative">
 						{/* Main Image */}
 						<Image
-							src={product.images?.main || "/placeholder.jpg"} // Фолбек
+							src={product.images?.main || "/placeholder.jpg"}
 							alt={product.name}
 							fill
 							className="object-cover transition-opacity duration-500"
@@ -78,52 +81,55 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 							/>
 						)}
 
-						{/* Dark Overlay on Hover */}
-						<div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-500" />
+						{/* Dark Overlay on Hover (чтобы текст/кнопки поверх фото были видны) */}
+						<div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500" />
 					</motion.div>
 
-					{/* Quick Add / View Button */}
-					<div className="absolute bottom-4 right-4 w-10 h-10 bg-cream text-forest rounded-full flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-gold hover:text-forest z-20 shadow-lg">
+					{/* Quick Add Button (White/Cream pop against image) */}
+					<div className="absolute bottom-4 right-4 w-10 h-10 bg-white text-forest rounded-full flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-gold hover:text-forest z-20 shadow-lg">
 						<ArrowUpRight size={18} />
 					</div>
 				</div>
 
-				{/* --- Content --- */}
+				{/* --- Content (Dark Text for Cream Background) --- */}
 				<div className="flex flex-col grow">
 					<div className="flex justify-between items-start mb-2">
 						<div>
-							<span className="text-white/40 text-xs font-serif italic mb-1 block line-clamp-1">
+							{/* Latin: text-forest/40 */}
+							<span className="text-forest/40 text-xs font-serif italic mb-1 block line-clamp-1">
 								{product.latinName}
 							</span>
-							<h3 className="text-xl md:text-2xl font-serif text-cream group-hover:text-gold transition-colors duration-300 line-clamp-2">
+							{/* Title: text-forest + hover:text-forest */}
+							<h3 className="text-xl md:text-2xl font-serif text-forest group-hover:text-forest transition-colors duration-300 line-clamp-2">
 								{product.name}
 							</h3>
 						</div>
 
 						<div className="shrink-0 text-right">
 							{product.startPrice ? (
-								<span className="text-cream font-sans text-lg block">
+								/* Price: text-forest */
+								<span className="text-forest font-sans text-lg block">
 									от {new Intl.NumberFormat("ru-RU").format(product.startPrice)}{" "}
 									{BASE.currency}
 								</span>
 							) : (
-								<span className="text-white/50 font-sans text-sm block">
+								<span className="text-forest/50 font-sans text-sm block">
 									Под заказ
 								</span>
 							)}
 						</div>
 					</div>
 
-					{/* Decorative Line */}
-					<div className="w-full h-px bg-white/10 my-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+					{/* Decorative Line: bg-forest/10 */}
+					<div className="w-full h-px bg-forest/10 my-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
 					{/* Available Sizes */}
 					{product.sizes && product.sizes.length > 0 && (
-						<div className="flex gap-2 mb-4 opacity-50 text-[10px] uppercase tracking-wider">
+						<div className="flex gap-2 mb-4 opacity-60 text-[10px] uppercase tracking-wider text-forest">
 							{product.sizes.slice(0, 3).map((s) => (
 								<span
 									key={s.id}
-									className={!s.available ? "line-through text-white/20" : ""}>
+									className={!s.available ? "line-through text-forest/30" : ""}>
 									{s.height.replace(" см", "")}
 								</span>
 							))}
@@ -131,7 +137,8 @@ export default function ProductCard({ product, index }: ProductCardProps) {
 						</div>
 					)}
 
-					<p className="text-white/60 text-sm font-sans leading-relaxed line-clamp-2 mt-auto">
+					{/* Desc: text-forest/60 */}
+					<p className="text-forest/60 text-sm font-sans leading-relaxed line-clamp-2 mt-auto">
 						{product.shortDesc}
 					</p>
 				</div>

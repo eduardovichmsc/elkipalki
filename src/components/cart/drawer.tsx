@@ -42,7 +42,6 @@ export default function CartDrawer() {
 
 	// --- ЛОГИКА WHATSAPP ---
 	const handleWhatsApp = () => {
-		// Формируем красивый текст сообщения
 		let message = `Здравствуйте! Хочу оформить заказ:\n\n`;
 		items.forEach((item, i) => {
 			message += `${i + 1}. ${item.name} (${item.selectedSize.height}) - ${item.quantity} шт.\n`;
@@ -50,7 +49,6 @@ export default function CartDrawer() {
 		message += `\nИтого: ${new Intl.NumberFormat("ru-RU").format(totalPrice())} ${BASE.currency}`;
 		message += `\n\n(Заказ с сайта)`;
 
-		// Кодируем и открываем
 		const url = `https://wa.me/${MANAGER_PHONE}?text=${encodeURIComponent(message)}`;
 		window.open(url, "_blank");
 	};
@@ -106,15 +104,18 @@ export default function CartDrawer() {
 						animate={{ x: 0 }}
 						exit={{ x: "100%" }}
 						transition={{ type: "spring", damping: 25, stiffness: 200 }}
-						className="fixed top-0 right-0 h-full w-full md:w-[500px] bg-[#0F2E22] border-l border-white/10 z-[70] flex flex-col shadow-2xl">
+						// UPDATED: bg-cream text-forest border-forest/10
+						className="fixed top-0 right-0 h-full w-full md:w-[500px] bg-cream text-forest border-l border-forest/10 z-[70] flex flex-col shadow-2xl">
 						{/* Header */}
-						<div className="flex items-center justify-between p-6 border-b border-white/10">
-							<h2 className="text-2xl font-serif text-cream">
+						{/* UPDATED: border-forest/10 */}
+						<div className="flex items-center justify-between p-6 border-b border-forest/10">
+							<h2 className="text-2xl font-serif text-forest">
 								{isCheckout ? "Оформление" : success ? "Спасибо!" : "Корзина"}
 							</h2>
 							<button
 								onClick={closeCart}
-								className="text-white/50 hover:text-gold transition-colors">
+								// UPDATED: text-forest/50 hover:text-forest
+								className="text-forest/50 hover:text-forest transition-colors">
 								<X size={24} />
 							</button>
 						</div>
@@ -123,19 +124,21 @@ export default function CartDrawer() {
 						<div className="flex-1 overflow-y-auto p-6">
 							{success ? (
 								<div className="h-full flex flex-col items-center justify-center text-center">
-									<div className="w-20 h-20 rounded-full bg-gold/10 text-gold flex items-center justify-center mb-6">
+									{/* UPDATED: bg-forest/10 text-forest */}
+									<div className="w-20 h-20 rounded-full bg-forest/10 text-forest flex items-center justify-center mb-6">
 										<ArrowRight size={40} className="-rotate-45" />
 									</div>
-									<h3 className="text-3xl font-serif text-cream mb-4">
+									<h3 className="text-3xl font-serif text-forest mb-4">
 										Заказ принят!
 									</h3>
-									<p className="text-white/60">
+									<p className="text-forest/60">
 										Наш менеджер свяжется с вами в течение 15 минут для
 										подтверждения деталей.
 									</p>
 								</div>
 							) : items.length === 0 ? (
-								<div className="h-full flex flex-col items-center justify-center text-center text-white/30">
+								// UPDATED: text-forest/30
+								<div className="h-full flex flex-col items-center justify-center text-center text-forest/30">
 									<p>Ваша корзина пуста</p>
 								</div>
 							) : isCheckout ? (
@@ -145,7 +148,8 @@ export default function CartDrawer() {
 									onSubmit={handleSubmit}
 									className="space-y-6">
 									<div>
-										<label className="text-xs uppercase tracking-widest text-gold mb-2 block">
+										{/* UPDATED: text-forest/60 */}
+										<label className="text-xs uppercase tracking-widest text-forest/60 mb-2 block">
 											Ваше имя
 										</label>
 										<input
@@ -155,12 +159,13 @@ export default function CartDrawer() {
 											onChange={(e) =>
 												setFormData({ ...formData, name: e.target.value })
 											}
-											className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-cream focus:border-gold outline-none transition-colors"
+											// UPDATED: bg-forest/5 border-forest/10 text-forest focus:border-gold placeholder:text-forest/30
+											className="w-full bg-forest/5 border border-forest/10 rounded-lg p-4 text-forest placeholder:text-forest/30 focus:border-gold outline-none transition-colors"
 											placeholder="Иван Иванов"
 										/>
 									</div>
 									<div>
-										<label className="text-xs uppercase tracking-widest text-gold mb-2 block">
+										<label className="text-xs uppercase tracking-widest text-forest/60 mb-2 block">
 											Телефон
 										</label>
 										<input
@@ -170,12 +175,12 @@ export default function CartDrawer() {
 											onChange={(e) =>
 												setFormData({ ...formData, phone: e.target.value })
 											}
-											className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-cream focus:border-gold outline-none transition-colors"
+											className="w-full bg-forest/5 border border-forest/10 rounded-lg p-4 text-forest placeholder:text-forest/30 focus:border-gold outline-none transition-colors"
 											placeholder="+7 (999) 000-00-00"
 										/>
 									</div>
 									<div>
-										<label className="text-xs uppercase tracking-widest text-gold mb-2 block">
+										<label className="text-xs uppercase tracking-widest text-forest/60 mb-2 block">
 											Комментарий
 										</label>
 										<textarea
@@ -184,7 +189,7 @@ export default function CartDrawer() {
 											onChange={(e) =>
 												setFormData({ ...formData, comment: e.target.value })
 											}
-											className="w-full bg-white/5 border border-white/10 rounded-lg p-4 text-cream focus:border-gold outline-none transition-colors resize-none"
+											className="w-full bg-forest/5 border border-forest/10 rounded-lg p-4 text-forest placeholder:text-forest/30 focus:border-gold outline-none transition-colors resize-none"
 											placeholder="Код домофона, этаж..."
 										/>
 									</div>
@@ -194,7 +199,8 @@ export default function CartDrawer() {
 								<div className="space-y-6">
 									{items.map((item) => (
 										<div key={item.cartId} className="flex gap-4">
-											<div className="relative w-20 h-24 bg-white/5 rounded-lg overflow-hidden shrink-0">
+											{/* UPDATED: bg-forest/5 */}
+											<div className="relative w-20 h-24 bg-forest/5 rounded-lg overflow-hidden shrink-0">
 												<Image
 													src={item.images?.main || ""}
 													alt={item.name}
@@ -205,36 +211,39 @@ export default function CartDrawer() {
 											<div className="flex-1 flex flex-col justify-between">
 												<div>
 													<div className="flex justify-between items-start">
-														<h4 className="font-serif text-cream text-lg">
+														<h4 className="font-serif text-forest text-lg">
 															{item.name}
 														</h4>
 														<button
 															onClick={() => removeItem(item.cartId)}
-															className="text-white/20 hover:text-red-400 transition-colors">
+															// UPDATED: text-forest/20 hover:text-red-500
+															className="text-forest/20 hover:text-red-500 transition-colors">
 															<Trash2 size={16} />
 														</button>
 													</div>
-													<p className="text-xs text-white/50 uppercase tracking-widest mt-1">
+													<p className="text-xs text-forest/50 uppercase tracking-widest mt-1">
 														Размер: {item.selectedSize.height}
 													</p>
 												</div>
 												<div className="flex justify-between items-end">
-													<div className="flex items-center gap-3 bg-white/5 rounded-full px-3 py-1">
+													{/* UPDATED: bg-forest/5 */}
+													<div className="flex items-center gap-3 bg-forest/5 rounded-full px-3 py-1">
 														<button
 															onClick={() => updateQuantity(item.cartId, -1)}
-															className="text-white/50 hover:text-white">
+															// UPDATED: text-forest/50 hover:text-forest
+															className="text-forest/50 hover:text-forest">
 															<Minus size={14} />
 														</button>
-														<span className="text-sm font-mono w-4 text-center">
+														<span className="text-sm font-mono w-4 text-center text-forest">
 															{item.quantity}
 														</span>
 														<button
 															onClick={() => updateQuantity(item.cartId, 1)}
-															className="text-white/50 hover:text-white">
+															className="text-forest/50 hover:text-forest">
 															<Plus size={14} />
 														</button>
 													</div>
-													<span className="text-gold font-sans">
+													<span className="text-forest font-sans font-bold">
 														{new Intl.NumberFormat("ru-RU").format(
 															item.selectedSize.price * item.quantity
 														)}{" "}
@@ -249,13 +258,14 @@ export default function CartDrawer() {
 						</div>
 
 						{/* Footer / Actions */}
+						{/* UPDATED: bg-forest/5 border-forest/10 */}
 						{!success && items.length > 0 && (
-							<div className="p-6 border-t border-white/10 bg-[#0B2319]">
+							<div className="p-6 border-t border-forest/10 bg-forest/5">
 								<div className="flex justify-between items-center mb-6">
-									<span className="text-white/50 text-sm uppercase tracking-widest">
+									<span className="text-forest/50 text-sm uppercase tracking-widest">
 										Итого:
 									</span>
-									<span className="text-2xl font-serif text-cream">
+									<span className="text-2xl font-serif text-forest">
 										{new Intl.NumberFormat("ru-RU").format(totalPrice())}{" "}
 										{BASE.currency}
 									</span>
@@ -265,14 +275,16 @@ export default function CartDrawer() {
 									<div className="flex gap-4">
 										<button
 											onClick={() => setIsCheckout(false)}
-											className="w-1/3 py-4 rounded-full border border-white/20 bg-transparent text-cream text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-white hover:text-forest hover:border-white active:scale-95">
+											// UPDATED: border-forest/20 text-forest hover:bg-forest hover:text-cream
+											className="w-1/3 py-4 rounded-full border border-forest/20 bg-transparent text-forest text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-forest hover:text-cream hover:border-forest active:scale-95">
 											Назад
 										</button>
 										<button
 											type="submit"
 											form="checkout-form"
 											disabled={loading}
-											className="flex-1 py-4 rounded-full border border-white/20 bg-transparent text-cream text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gold hover:text-forest hover:border-gold active:scale-95 flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+											// UPDATED: border-forest/20 text-forest hover:bg-forest hover:text-cream
+											className="flex-1 py-4 rounded-full border border-forest/20 bg-transparent text-forest text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-forest hover:text-cream hover:border-forest active:scale-95 flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
 											{loading && (
 												<Loader2 size={16} className="animate-spin" />
 											)}
@@ -283,14 +295,16 @@ export default function CartDrawer() {
 									<div className="flex flex-col gap-3">
 										<button
 											onClick={() => setIsCheckout(true)}
-											className="w-full py-4 rounded-full border border-white/20 bg-transparent text-cream text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gold hover:text-forest hover:border-gold active:scale-95">
+											// UPDATED: border-forest/20 text-forest hover:bg-forest hover:text-cream
+											className="w-full py-4 rounded-full border border-forest/20 bg-transparent text-forest text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-forest hover:text-cream hover:border-forest active:scale-95">
 											Оформить заказ
 										</button>
 
 										{/* Кнопка WhatsApp */}
 										<button
 											onClick={handleWhatsApp}
-											className="w-full py-3 rounded-full border border-white/10 bg-[#25D366]/10 text-[#25D366] text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#1b8f45] hover:text-white active:scale-95 flex items-center justify-center gap-3">
+											// UPDATED: bg-[#25D366]/10 text-[#128C7E]
+											className="w-full py-3 rounded-full border border-forest/5 bg-[#25D366]/10 text-[#128C7E] text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:bg-[#1a8d44] hover:text-white active:scale-95 flex items-center justify-center gap-3">
 											<WhatsAppIcon className="w-4 h-4" /> Быстрый заказ
 										</button>
 									</div>

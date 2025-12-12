@@ -1,13 +1,6 @@
 "use client";
 import { useState } from "react";
-import {
-	ShoppingBag,
-	Menu,
-	X,
-	Settings,
-	Heart,
-	ArrowUpRight,
-} from "lucide-react";
+import { ShoppingBag, Menu, X, Settings, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAVLINKS, PATHS } from "@/config";
 import { useLenis } from "@/components/layout/scroll";
@@ -87,16 +80,24 @@ export default function Navbar() {
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
 				className="fixed top-6 left-0 right-0 z-50 flex justify-center items-center px-4">
-				<div className="relative flex items-center justify-between px-2 py-2 bg-forest/60 backdrop-blur-md border border-white/10 rounded-full shadow-2xl shadow-black/20 min-w-full md:min-w-[500px]">
+				{/* 
+                    UPDATED: 
+                    - bg-cream/80 backdrop-blur-md (Светлый фон)
+                    - border-forest/10 (Темная прозрачная граница)
+                    - shadow-forest/5 (Легкая тень)
+                */}
+				<div className="relative flex items-center justify-between px-2 py-2 bg-cream/80 backdrop-blur-md border border-forest/10 rounded-full shadow-2xl shadow-forest/5 min-w-full md:min-w-[500px]">
 					<TransitionLink
 						href={PATHS.HOME}
 						onClick={(e) => handleScroll(e, PATHS.HOME)}
-						className="pl-6 pr-4 font-serif text-xl tracking-widest text-cream">
+						// UPDATED: text-forest
+						className="pl-6 pr-4 font-serif text-xl tracking-widest text-forest">
 						{BASE.logo.text}
 					</TransitionLink>
 
 					{/* Desktop Menu */}
-					<nav className="hidden md:flex items-center gap-2 bg-black/20 rounded-full px-2 py-1.5 border border-white/5">
+					{/* UPDATED: bg-forest/5 (Светло-серый/зеленый фон контейнера) */}
+					<nav className="hidden md:flex items-center gap-2 bg-forest/5 rounded-full px-2 py-1.5 border border-forest/5">
 						{NAVLINKS.map((link, index) => (
 							<TransitionLink
 								key={link.name}
@@ -104,7 +105,8 @@ export default function Navbar() {
 								onClick={(e) => handleScroll(e, link.href)}
 								onMouseEnter={() => setHoveredIndex(index)}
 								onMouseLeave={() => setHoveredIndex(null)}
-								className="relative text-xs uppercase tracking-widest text-cream/80 hover:text-cream hover:bg-white/10 rounded-full transition-all duration-300">
+								// UPDATED: text-forest/60 hover:text-forest hover:bg-forest/5
+								className="relative text-xs uppercase tracking-widest text-forest/60 hover:text-forest hover:bg-forest/5 rounded-full transition-all duration-300">
 								<span className="block relative z-10 px-4 py-2">
 									{link.name}
 								</span>
@@ -117,25 +119,30 @@ export default function Navbar() {
 							href="/studio"
 							target="_blank"
 							title="Панель администратора"
-							className="hidden md:flex w-10 h-10 items-center justify-center rounded-full hover:bg-white/10 text-cream/40 hover:text-gold transition-all duration-300">
+							// UPDATED: text-forest/40 hover:bg-forest/5
+							className="hidden md:flex w-10 h-10 items-center justify-center rounded-full hover:bg-forest/5 text-forest/40 transition-all duration-300">
 							<Settings size={16} />
 						</TransitionLink>
 
 						<button
 							onClick={openCart}
-							className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-forest transition-all duration-300 cursor-pointer">
+							// UPDATED: bg-forest/5 text-forest hover:bg-forest hover:text-cream
+							className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-forest/5 hover:bg-forest text-forest hover:text-cream transition-all duration-300 cursor-pointer">
 							<ShoppingBag size={18} />
-							<span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-cream text-[10px] font-bold text-forest opacity-0 group-hover:opacity-100 transition-opacity">
+							{/* UPDATED: bg-forest text-cream */}
+							<span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-forest text-[10px] font-bold text-cream opacity-0 group-hover:opacity-100 transition-opacity">
 								{cartCount}
 							</span>
 						</button>
 
 						<TransitionLink
 							href="/favorites"
-							className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-gold/10 hover:bg-gold text-gold hover:text-forest transition-all duration-300 cursor-pointer">
+							// UPDATED: bg-forest/5 text-forest hover:bg-forest hover:text-cream
+							className="relative group w-10 h-10 flex items-center justify-center rounded-full bg-forest/5 hover:bg-forest text-forest hover:text-cream transition-all duration-300 cursor-pointer">
 							<Heart size={18} />
 							{favoritesCount > 0 && (
-								<span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-cream text-[10px] font-bold text-forest">
+								// UPDATED: bg-forest text-cream
+								<span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-forest text-[10px] font-bold text-cream">
 									{favoritesCount}
 								</span>
 							)}
@@ -143,14 +150,15 @@ export default function Navbar() {
 
 						<button
 							onClick={() => setIsMenuOpen(true)}
-							className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-cream">
+							// UPDATED: hover:bg-forest/5 text-forest
+							className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-forest/5 transition-colors text-forest">
 							<Menu size={20} />
 						</button>
 					</div>
 				</div>
 			</motion.header>
 
-			{/* --- NEW AWWWARDS MOBILE MENU --- */}
+			{/* --- NEW AWWWARDS MOBILE MENU (Cream Theme) --- */}
 			<AnimatePresence>
 				{isMenuOpen && (
 					<motion.div
@@ -158,15 +166,19 @@ export default function Navbar() {
 						initial="initial"
 						animate="animate"
 						exit="exit"
-						className="fixed inset-0 z-[60] bg-[#0B2319] origin-top flex flex-col justify-between">
+						// UPDATED: bg-cream
+						className="fixed inset-0 z-[60] bg-cream origin-top flex flex-col justify-between">
 						{/* Header in Menu */}
-						<div className="flex justify-between items-center p-6 border-b border-white/10">
-							<span className="font-serif text-xl tracking-widest text-cream">
+						{/* UPDATED: border-forest/10 */}
+						<div className="flex justify-between items-center p-6 border-b border-forest/10">
+							{/* UPDATED: text-forest */}
+							<span className="font-serif text-xl tracking-widest text-forest">
 								NOËL
 							</span>
 							<button
 								onClick={() => setIsMenuOpen(false)}
-								className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-cream">
+								// UPDATED: hover:bg-forest/5 text-forest
+								className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-forest/5 transition-colors text-forest">
 								<X size={24} />
 							</button>
 						</div>
@@ -185,11 +197,14 @@ export default function Navbar() {
 											<TransitionLink
 												href={link.href}
 												onClick={(e) => handleScroll(e, link.href)}
-												className="group flex items-start gap-4 text-cream">
-												<span className="text-xs font-mono text-gold/50 mt-2">
+												// UPDATED: text-forest
+												className="group flex items-start gap-4 text-forest">
+												{/* UPDATED: text-forest/40 */}
+												<span className="text-xs font-mono text-forest/40 mt-2">
 													0{i + 1}
 												</span>
-												<span className="text-5xl md:text-7xl font-serif italic group-hover:text-gold transition-colors duration-500">
+												{/* UPDATED: hover:text-forest */}
+												<span className="text-5xl md:text-7xl font-serif italic transition-colors duration-500 hover:text-forest">
 													{link.name}
 												</span>
 											</TransitionLink>
@@ -202,7 +217,8 @@ export default function Navbar() {
 									<motion.div variants={mobileLinkVars}>
 										<TransitionLink
 											href="/studio"
-											className="text-sm uppercase tracking-widest text-white/30 hover:text-gold flex items-center gap-2">
+											// UPDATED: text-forest/30 hover:text-forest
+											className="text-sm uppercase tracking-widest text-forest/30 hover:text-forest flex items-center gap-2">
 											<Settings size={14} /> Admin Panel
 										</TransitionLink>
 									</motion.div>
