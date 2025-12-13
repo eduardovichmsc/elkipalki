@@ -274,7 +274,7 @@ export default function ProductPageClient({
 						{/* UPDATED: border-forest/20 hover:border-forest hover:text-forest */}
 						<button
 							onClick={handleWhatsApp}
-							className="uppercase tracking-widest text-xs border-b border-forest/20 pb-1 group-hover:border-forest group-hover:text-forest transition-colors">
+							className="uppercase tracking-widest text-xs text-forest border-b border-forest/20 pb-1 group-hover:border-forest group-hover:text-forest transition-colors">
 							Связаться с менеджером
 						</button>
 					</div>
