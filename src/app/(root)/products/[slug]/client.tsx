@@ -12,6 +12,8 @@ import { useCartStore } from "@/store/cart";
 import TransitionLink from "@/components/ui/link";
 import { BASE } from "@/config";
 
+const MANAGER_PHONE = PATHS.CONTACTS.WHATSAPP.title;
+
 interface ProductPageClientProps {
 	product: Product;
 	relatedProducts: Product[];
@@ -23,6 +25,12 @@ export default function ProductPageClient({
 }: ProductPageClientProps) {
 	const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
 	const { addItem } = useCartStore();
+
+	const handleWhatsApp = () => {
+		let message = `Здравствуйте! Хочу оформить заказ:\n\n`;
+		const url = `https://wa.me/${MANAGER_PHONE}?text=${encodeURIComponent(message)}`;
+		window.open(url, "_blank");
+	};
 
 	return (
 		<div className="pt-32 pb-24 px-6 md:px-12 mx-auto">
@@ -74,7 +82,7 @@ export default function ProductPageClient({
 						<div className="relative aspect-square bg-forest/5 flex items-center justify-center p-8 text-center">
 							{/* UPDATED: text-forest/20 */}
 							<p className="text-forest font-serif italic text-xl">
-								"Every tree has a soul meant to light up your home."
+								«Каждое дерево имеет душу, предназначенную освещать ваш дом.»
 							</p>
 						</div>
 					</div>
@@ -94,8 +102,8 @@ export default function ProductPageClient({
 								{/* UPDATED: text-forest */}
 								<span className="text-forest text-xs font-bold uppercase tracking-widest">
 									{product.tags?.includes("bestseller")
-										? "Bestseller"
-										: "Premium Collection"}
+										? "Бестселлер"
+										: "Премиальная коллекция"}
 								</span>
 								{/* UPDATED: bg-forest/30 */}
 								<div className="h-px w-8 bg-forest/30"></div>
@@ -219,11 +227,7 @@ export default function ProductPageClient({
 								</ul>
 							</Accordion>
 							<Accordion title="Уход за деревом">
-								<p>
-									Держите елку вдали от батарей. Используйте нашу подставку с
-									резервуаром для воды и добавляйте специальный раствор (идет в
-									комплекте) каждые 2 дня.
-								</p>
+								<p>Держите елку вдали от батарей.</p>
 							</Accordion>
 							<Accordion title="Доставка и Установка">
 								<div className="flex items-start gap-3">
@@ -268,9 +272,11 @@ export default function ProductPageClient({
 							Нужна елка выше 4 метров или особый сорт? Мы привезем под заказ.
 						</p>
 						{/* UPDATED: border-forest/20 hover:border-forest hover:text-forest */}
-						<span className="uppercase tracking-widest text-xs border-b border-forest/20 pb-1 group-hover:border-forest group-hover:text-forest transition-colors">
+						<button
+							onClick={handleWhatsApp}
+							className="uppercase tracking-widest text-xs border-b border-forest/20 pb-1 group-hover:border-forest group-hover:text-forest transition-colors">
 							Связаться с менеджером
-						</span>
+						</button>
 					</div>
 				</div>
 			</section>
